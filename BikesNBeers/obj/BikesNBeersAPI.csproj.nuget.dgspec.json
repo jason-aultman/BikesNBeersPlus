@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeers.csproj": {}
+    "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeers.csproj": {
+    "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeers.csproj",
-        "projectName": "BikesNBeers",
-        "projectPath": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeers.csproj",
+        "projectUniqueName": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj",
+        "projectName": "BikesNBeersAPI",
+        "projectPath": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj",
         "packagesPath": "C:\\Users\\jason\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\obj\\",
         "projectStyle": "PackageReference",

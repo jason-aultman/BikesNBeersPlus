@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikesNBeers", "BikesNBeers\BikesNBeers.csproj", "{BBA3F1FD-6418-405E-A497-3C5248A12EC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikesNBeersAPI", "BikesNBeers\BikesNBeersAPI.csproj", "{BBA3F1FD-6418-405E-A497-3C5248A12EC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikesNBeersMVC", "BikesNBeersMVC\BikesNBeersMVC.csproj", "{163CEC5D-A06D-4B27-BE23-16AF93D41F99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BBA3F1FD-6418-405E-A497-3C5248A12EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBA3F1FD-6418-405E-A497-3C5248A12EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBA3F1FD-6418-405E-A497-3C5248A12EC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{163CEC5D-A06D-4B27-BE23-16AF93D41F99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{163CEC5D-A06D-4B27-BE23-16AF93D41F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{163CEC5D-A06D-4B27-BE23-16AF93D41F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{163CEC5D-A06D-4B27-BE23-16AF93D41F99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

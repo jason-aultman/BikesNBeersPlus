@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jason\\source\\repos\\BikesNBeers\\BikesNBeers\\BikesNBeers.csproj",
-      "projectName": "BikesNBeers",
-      "projectPath": "C:\\Users\\jason\\source\\repos\\BikesNBeers\\BikesNBeers\\BikesNBeers.csproj",
+      "projectUniqueName": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj",
+      "projectName": "BikesNBeersAPI",
+      "projectPath": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj",
       "packagesPath": "C:\\Users\\jason\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jason\\source\\repos\\BikesNBeers\\BikesNBeers\\obj\\",
+      "outputPath": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -68,7 +68,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

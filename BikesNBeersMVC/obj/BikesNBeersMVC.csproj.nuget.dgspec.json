@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeers.csproj": {}
+    "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeersMVC\\BikesNBeersMVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeers.csproj": {
+    "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeersMVC\\BikesNBeersMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeers.csproj",
-        "projectName": "BikesNBeers",
-        "projectPath": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeers.csproj",
+        "projectUniqueName": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeersMVC\\BikesNBeersMVC.csproj",
+        "projectName": "BikesNBeersMVC",
+        "projectPath": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeersMVC\\BikesNBeersMVC.csproj",
         "packagesPath": "C:\\Users\\jason\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\obj\\",
+        "outputPath": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeersMVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -42,6 +42,28 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
