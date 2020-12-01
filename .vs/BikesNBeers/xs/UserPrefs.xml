@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{BBA3F1FD-6418-405E-A497-3C5248A12EC4}|BikesNBeers">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BikesNBeersMVC/Controllers/HomeController.cs">
+    <Files>
+      <File FileName="BikesNBeersMVC/Services/CoordinateHandler.cs" Line="8" Column="29" IsPinned="True" />
+      <File FileName="BikesNBeers/Startup.cs" Line="1" Column="1" />
+      <File FileName="BikesNBeersMVC/Services/ICoordinateHandler.cs" Line="3" Column="1" />
+      <File FileName="BikesNBeersMVC/Services/HotelHandler.cs" Line="23" Column="52" />
+      <File FileName="BikesNBeersMVC/Models/Coordinate.cs" Line="8" Column="6" />
+      <File FileName="BikesNBeersMVC/Models/HotelResponse.cs" Line="29" Column="1" />
+      <File FileName="BikesNBeersMVC/Services/BrewHandler.cs" Line="20" Column="15" />
+      <File FileName="BikesNBeersMVC/Models/BreweryResponse.cs" Line="76" Column="1" />
+      <File FileName="BikesNBeersMVC/Controllers/HomeController.cs" Line="35" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="BikesNBeers" expanded="True">
+            <Node name="BikesNBeersAPI" expanded="True" />
+            <Node name="BikesNBeersMVC" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="HomeController.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.BikesNBeersAPI PreferredExecutionTarget="/Applications/Safari.app" />
+</Properties>
