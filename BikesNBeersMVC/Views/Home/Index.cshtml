@@ -1,8 +1,31 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model ViewModel
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1>
+        Hotels List
+    </h1>
+   <br />
+    @foreach(var response in Model.HotelResponses.results)
+    {
+        @response.name;
+        <br />
+        @response.rating;
+        <br />
+    }
+<h1>
+    Breweries List
+</h1>
+    <br />
+    @foreach(var response in Model.Breweries.Results)
+    {
+        @response.Name;
+        <br />
+
+        @response.Rating;
+        <br />
+    }
 </div>

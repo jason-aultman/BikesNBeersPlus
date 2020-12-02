@@ -11,12 +11,20 @@ namespace BikesNBeersMVC.Services
     public class BrewHandler
     {
         private HttpClient _httpClient;
+        private readonly JsonSerializerOptions _options;
 
         public BrewHandler()
         {
             _httpClient = new HttpClient()
             {
                 BaseAddress = new Uri("https://maps.googleapis.com/maps/api/")
+            };
+            _options = new JsonSerializerOptions()
+            {
+                AllowTrailingCommas=true,
+                PropertyNameCaseInsensitive=true,
+                
+                
             };
         }
 
@@ -36,7 +44,7 @@ namespace BikesNBeersMVC.Services
                 var httpResponse = await _httpClient.GetAsync($"place/nearbysearch/json?location={resultLatLong.results[0].geometry.location.lat},{resultLatLong.results[0].geometry.location.lng}&radius=5000&keyword=brewery&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA");
                 httpResponse.EnsureSuccessStatusCode();
                 var content = await httpResponse.Content.ReadAsStringAsync();
-                result = JsonSerializer.Deserialize<BreweryResponse>(content);
+                result = JsonSerializer.Deserialize<BreweryResponse>(content, _options);
             }
 
             //ViewBag["result"] = result;

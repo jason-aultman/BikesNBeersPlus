@@ -24,13 +24,16 @@ namespace BikesNBeersMVC.Controllers
             var coordinate = new CoordinateHandler();
             var hotelResponse = new HotelHandler();
             var breweryResponse = new BrewHandler();
-
+            var viewModel = new ViewModel();
             var testCoordinate = coordinate.GetCoordinates(90210);
             var testHotelResponse = hotelResponse.Hotel(90210);
             var testHotelResponseResult = testHotelResponse.GetAwaiter().GetResult();
             var testbreweryResponse = breweryResponse.GetBrewery(90210);
             var testbreweryResponseResult = testbreweryResponse.GetAwaiter().GetResult();
-            return View();
+            viewModel.Breweries = testbreweryResponseResult;
+            viewModel.HotelResponses = testHotelResponseResult;
+
+            return View(viewModel);
         }
 
         public IActionResult Privacy()

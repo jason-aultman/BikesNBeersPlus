@@ -24,8 +24,8 @@ namespace BikesNBeersMVC
         public long? PriceLevel { get; set; }
         public double Rating { get; set; }
         public string Reference { get; set; }
-        public Scope Scope { get; set; }
-        public List<TypeElement> Types { get; set; }
+        public string Scope { get; set; }
+        public List<string> Types { get; set; }
         public long UserRatingsTotal { get; set; }
         public string Vicinity { get; set; }
     }
