@@ -8,19 +8,19 @@
     <h1>
         Hotels List
     </h1>
-   <br />
-    @foreach(var response in Model.HotelResponses.results)
+    <br />
+    @foreach (var response in Model.HotelResponses.results)
     {
         @response.name;
         <br />
         @response.rating;
         <br />
     }
-<h1>
-    Breweries List
-</h1>
+    <h1>
+        Breweries List
+    </h1>
     <br />
-    @foreach(var response in Model.Breweries.Results)
+    @foreach (var response in Model.Breweries.Results)
     {
         @response.Name;
         <br />
@@ -28,15 +28,22 @@
         @response.Rating;
         <br />
     }
+    @{int a = 0;}
+<div>
+    @foreach (var leg in Model.Routes[0].legs)
+    {
+       <b>Starting Address: </b> @leg.start_address<br />
 
-    <h1>
-        Route Display
-    
-    </h1>
+        @foreach (var step in leg.steps)
+        {
+            <div>
+                @Html.Raw(step.html_instructions) in 
+                @Html.Raw(step.distance.text)
+            </div>
+            
+        }
+        <b>Destination: </b> @leg.end_address
+    }
 
-    @Model.Routes[0].summary
-
-
-
-
+</div>
 </div>
