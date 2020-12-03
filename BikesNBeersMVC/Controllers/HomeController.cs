@@ -54,6 +54,7 @@ namespace BikesNBeersMVC.Controllers
             var testbreweryResponseResult = testbreweryResponse.GetAwaiter().GetResult();
             viewModel.Breweries = testbreweryResponseResult;
             viewModel.HotelResponses = testHotelResponseResult;
+            viewModel.Routes = testRoute.routes;
 
             return View(viewModel);
         }
