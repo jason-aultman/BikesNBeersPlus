@@ -25,6 +25,28 @@ namespace BikesNBeersMVC.Controllers
             var hotelResponse = new HotelHandler();
             var breweryResponse = new BrewHandler();
             var viewModel = new ViewModel();
+            var routeService = new RouteHandler();
+            var Coordinate1 = new Coordinate();
+            var Coordinate2 = new Coordinate();
+            Coordinate1.results = new BikesNBeersMVC.Models.Result[1];
+            Coordinate2.results = new BikesNBeersMVC.Models.Result[1];
+
+            Coordinate1.results[0] = new Models.Result();
+            Coordinate2.results[0] = new Models.Result();
+
+            Coordinate1.results[0].geometry = new Models.Geometry();
+            Coordinate2.results[0].geometry = new Models.Geometry();
+
+            Coordinate1.results[0].geometry.location = new Models.Location();
+            Coordinate2.results[0].geometry.location = new Models.Location();
+
+
+
+            Coordinate1.results[0].geometry.location.lat = 42.4806F;
+            Coordinate1.results[0].geometry.location.lng = -83.47555F;
+            Coordinate2.results[0].geometry.location.lat = 42.3684F;
+            Coordinate2.results[0].geometry.location.lng = -83.3527F;
+            var testRoute = routeService.GetRoute(Coordinate1, Coordinate2);
             var testCoordinate = coordinate.GetCoordinates(90210);
             var testHotelResponse = hotelResponse.Hotel(90210);
             var testHotelResponseResult = testHotelResponse.GetAwaiter().GetResult();

@@ -1,26 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj": {}
+    "C:\\Users\\debra_2qm34gh\\source\\repos\\BikesNBeersProjectVersion3\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj": {
+    "C:\\Users\\debra_2qm34gh\\source\\repos\\BikesNBeersProjectVersion3\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj",
+        "projectUniqueName": "C:\\Users\\debra_2qm34gh\\source\\repos\\BikesNBeersProjectVersion3\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj",
         "projectName": "BikesNBeersAPI",
-        "projectPath": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj",
-        "packagesPath": "C:\\Users\\jason\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jason\\Source\\Repos\\BikesNBeers\\BikesNBeers\\obj\\",
+        "projectPath": "C:\\Users\\debra_2qm34gh\\source\\repos\\BikesNBeersProjectVersion3\\BikesNBeers\\BikesNBeers\\BikesNBeersAPI.csproj",
+        "packagesPath": "C:\\Users\\debra_2qm34gh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\debra_2qm34gh\\source\\repos\\BikesNBeersProjectVersion3\\BikesNBeers\\BikesNBeers\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jason\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\debra_2qm34gh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -66,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
