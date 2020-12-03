@@ -2,6 +2,52 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
+      "Azure.Core/1.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "1.0.0",
+          "System.Buffers": "4.5.0",
+          "System.Diagnostics.DiagnosticSource": "4.6.0",
+          "System.Memory": "4.5.3",
+          "System.Numerics.Vectors": "4.5.0",
+          "System.Threading.Tasks.Extensions": "4.5.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Core.dll": {}
+        }
+      },
+      "Azure.Data.AppConfiguration/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Azure.Core": "1.0.1",
+          "Microsoft.Bcl.AsyncInterfaces": "1.0.0",
+          "System.Text.Json": "4.6.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Data.AppConfiguration.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Data.AppConfiguration.dll": {}
+        }
+      },
+      "Azure.Security.KeyVault.Secrets/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Azure.Core": "1.0.1",
+          "System.Memory": "4.5.3",
+          "System.Text.Json": "4.6.0",
+          "System.Threading.Tasks.Extensions": "4.5.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Azure.Security.KeyVault.Secrets.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Azure.Security.KeyVault.Secrets.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/3.1.8": {
         "type": "package",
         "compile": {
@@ -79,6 +125,21 @@
           "buildMultiTargeting/Microsoft.AspNetCore.Identity.UI.props": {},
           "buildMultiTargeting/Microsoft.AspnetCore.Identity.UI.targets": {}
         }
+      },
+      "Microsoft.Azure.AppConfiguration.AspNetCore/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Configuration.AzureAppConfiguration": "4.0.0"
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.Azure.AppConfiguration.AspNetCore.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.Azure.AppConfiguration.AspNetCore.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
@@ -278,6 +339,22 @@
         },
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.Configuration.AzureAppConfiguration/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Azure.Data.AppConfiguration": "1.0.0",
+          "Azure.Security.KeyVault.Secrets": "4.0.1",
+          "Microsoft.Extensions.Configuration": "2.1.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.1.1",
+          "System.Text.Json": "4.6.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.AzureAppConfiguration.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Configuration.AzureAppConfiguration.dll": {}
         }
       },
       "Microsoft.Extensions.Configuration.Binder/3.1.8": {
@@ -597,6 +674,15 @@
           }
         }
       },
+      "System.Buffers/4.5.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
+        }
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -895,6 +981,15 @@
           "lib/netstandard1.6/System.Linq.dll": {}
         }
       },
+      "System.Memory/4.5.3": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/_._": {}
+        }
+      },
       "System.Net.NameResolution/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -937,6 +1032,15 @@
         },
         "compile": {
           "ref/netstandard1.3/_._": {}
+        }
+      },
+      "System.Numerics.Vectors/4.5.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.0/_._": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/_._": {}
         }
       },
       "System.Private.DataContractSerialization/4.3.0": {
@@ -1372,6 +1476,15 @@
           "ref/netstandard1.3/_._": {}
         }
       },
+      "System.Text.Json/4.6.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/System.Text.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/System.Text.Json.dll": {}
+        }
+      },
       "System.Text.RegularExpressions/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1408,18 +1521,13 @@
           "ref/netstandard1.3/_._": {}
         }
       },
-      "System.Threading.Tasks.Extensions/4.3.0": {
+      "System.Threading.Tasks.Extensions/4.5.2": {
         "type": "package",
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Threading.Tasks": "4.3.0"
-        },
         "compile": {
-          "lib/netstandard1.0/_._": {}
+          "ref/netcoreapp2.1/_._": {}
         },
         "runtime": {
-          "lib/netstandard1.0/System.Threading.Tasks.Extensions.dll": {}
+          "lib/netcoreapp2.1/_._": {}
         }
       },
       "System.Xml.ReaderWriter/4.3.0": {
@@ -1523,6 +1631,52 @@
     }
   },
   "libraries": {
+    "Azure.Core/1.0.1": {
+      "sha512": "WfTa6+TaZXseHU95rg1FvYMqnDQxwjwJlYoSDyFNAXsYuycn37yBtbu+TlzTI5ai8YvElZjKG9hCXtXJy/sZWA==",
+      "type": "package",
+      "path": "azure.core/1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "azure.core.1.0.1.nupkg.sha512",
+        "azure.core.nuspec",
+        "lib/netstandard2.0/Azure.Core.dll",
+        "lib/netstandard2.0/Azure.Core.xml",
+        "pkgicon.png"
+      ]
+    },
+    "Azure.Data.AppConfiguration/1.0.0": {
+      "sha512": "Pwn9Kpc4J4w/2e5uuDYieS29nvQDPPBLOxFmMVoaXj0QehlFiPth2lqNbrbhFAapPaXLyko1K0oQ6RopyPPkgw==",
+      "type": "package",
+      "path": "azure.data.appconfiguration/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGELOG.md",
+        "README.md",
+        "azure.data.appconfiguration.1.0.0.nupkg.sha512",
+        "azure.data.appconfiguration.nuspec",
+        "lib/netstandard2.0/Azure.Data.AppConfiguration.dll",
+        "lib/netstandard2.0/Azure.Data.AppConfiguration.xml",
+        "pkgicon.png"
+      ]
+    },
+    "Azure.Security.KeyVault.Secrets/4.0.1": {
+      "sha512": "/6tKn6aMYGsaiFgdGmWX14V8yupFGqMxIGK1nD3D83cZY032VunmaP8wkDDNy3YUWM9UAqpejwQsgFdR/ftjbQ==",
+      "type": "package",
+      "path": "azure.security.keyvault.secrets/4.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "CHANGELOG.md",
+        "README.md",
+        "azure.security.keyvault.secrets.4.0.1.nupkg.sha512",
+        "azure.security.keyvault.secrets.nuspec",
+        "lib/netstandard2.0/Azure.Security.KeyVault.Secrets.dll",
+        "lib/netstandard2.0/Azure.Security.KeyVault.Secrets.xml",
+        "pkgicon.png"
+      ]
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/3.1.8": {
       "sha512": "CV5LFXiGRbegNRK6WL49uk/lBQHddetnc1Y7KvnuA5gQb4GV0r3rZ1drcJqWV5zsd7oytfp05sKI1NPxY+cxbQ==",
       "type": "package",
@@ -1679,6 +1833,21 @@
         "staticwebassets/V4/lib/jquery/dist/jquery.js",
         "staticwebassets/V4/lib/jquery/dist/jquery.min.js",
         "staticwebassets/V4/lib/jquery/dist/jquery.min.map"
+      ]
+    },
+    "Microsoft.Azure.AppConfiguration.AspNetCore/4.0.0": {
+      "sha512": "dmfNIa9vTmu9PaOgG72wp+PKy7+cYJDdy2NLHXdjNrKQiA58OQazsnILngbKGjbMyWM1XWs1N/USs2k8OCgXDQ==",
+      "type": "package",
+      "path": "microsoft.azure.appconfiguration.aspnetcore/4.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netcoreapp3.1/Microsoft.Azure.AppConfiguration.AspNetCore.dll",
+        "lib/netcoreapp3.1/Microsoft.Azure.AppConfiguration.AspNetCore.xml",
+        "lib/netstandard2.0/Microsoft.Azure.AppConfiguration.AspNetCore.dll",
+        "lib/netstandard2.0/Microsoft.Azure.AppConfiguration.AspNetCore.xml",
+        "microsoft.azure.appconfiguration.aspnetcore.4.0.0.nupkg.sha512",
+        "microsoft.azure.appconfiguration.aspnetcore.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -2024,6 +2193,19 @@
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
         "microsoft.extensions.configuration.abstractions.3.1.8.nupkg.sha512",
         "microsoft.extensions.configuration.abstractions.nuspec"
+      ]
+    },
+    "Microsoft.Extensions.Configuration.AzureAppConfiguration/4.0.0": {
+      "sha512": "VtCVgWylpBWLDCdfMsNCv6tEzJsa1ENF2X63IHFHDJAXuVLNN+dVtvqxk+tsx2+bDqAbx/QRMfRVcrfLziUW5w==",
+      "type": "package",
+      "path": "microsoft.extensions.configuration.azureappconfiguration/4.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.AzureAppConfiguration.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Configuration.AzureAppConfiguration.xml",
+        "microsoft.extensions.configuration.azureappconfiguration.4.0.0.nupkg.sha512",
+        "microsoft.extensions.configuration.azureappconfiguration.nuspec"
       ]
     },
     "Microsoft.Extensions.Configuration.Binder/3.1.8": {
@@ -2523,6 +2705,35 @@
         "runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
         "runtime.win-x86.runtime.native.system.data.sqlclient.sni.nuspec",
         "runtimes/win-x86/native/sni.dll",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "System.Buffers/4.5.0": {
+      "sha512": "pL2ChpaRRWI/p4LXyy4RgeWlYF2sgfj/pnVMvBqwNFr5cXg7CXNnWZWxrOONLg8VGdFB8oB+EG2Qw4MLgTOe+A==",
+      "type": "package",
+      "path": "system.buffers/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp2.0/_._",
+        "lib/netstandard1.1/System.Buffers.dll",
+        "lib/netstandard1.1/System.Buffers.xml",
+        "lib/netstandard2.0/System.Buffers.dll",
+        "lib/netstandard2.0/System.Buffers.xml",
+        "lib/uap10.0.16299/_._",
+        "ref/net45/System.Buffers.dll",
+        "ref/net45/System.Buffers.xml",
+        "ref/netcoreapp2.0/_._",
+        "ref/netstandard1.1/System.Buffers.dll",
+        "ref/netstandard1.1/System.Buffers.xml",
+        "ref/netstandard2.0/System.Buffers.dll",
+        "ref/netstandard2.0/System.Buffers.xml",
+        "ref/uap10.0.16299/_._",
+        "system.buffers.4.5.0.nupkg.sha512",
+        "system.buffers.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
@@ -3613,6 +3824,27 @@
         "system.linq.nuspec"
       ]
     },
+    "System.Memory/4.5.3": {
+      "sha512": "3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
+      "type": "package",
+      "path": "system.memory/4.5.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/netcoreapp2.1/_._",
+        "lib/netstandard1.1/System.Memory.dll",
+        "lib/netstandard1.1/System.Memory.xml",
+        "lib/netstandard2.0/System.Memory.dll",
+        "lib/netstandard2.0/System.Memory.xml",
+        "ref/netcoreapp2.1/_._",
+        "system.memory.4.5.3.nupkg.sha512",
+        "system.memory.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Net.NameResolution/4.3.0": {
       "sha512": "AFYl08R7MrsrEjqpQWTZWBadqXyTzNDaWpMqyxhb0d6sGhV6xMDKueuBXlLL30gz+DIRY6MpdgnHWlCh5wmq9w==",
       "type": "package",
@@ -3730,6 +3962,53 @@
         "ref/xamarinwatchos10/_._",
         "system.net.primitives.4.3.0.nupkg.sha512",
         "system.net.primitives.nuspec"
+      ]
+    },
+    "System.Numerics.Vectors/4.5.0": {
+      "sha512": "QQTlPTl06J/iiDbJCiepZ4H//BVraReU4O4EoRw1U02H5TLUIT7xn3GnDp9AXPSlJUDyFs4uWjWafNX6WrAojQ==",
+      "type": "package",
+      "path": "system.numerics.vectors/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Numerics.Vectors.dll",
+        "lib/net46/System.Numerics.Vectors.xml",
+        "lib/netcoreapp2.0/_._",
+        "lib/netstandard1.0/System.Numerics.Vectors.dll",
+        "lib/netstandard1.0/System.Numerics.Vectors.xml",
+        "lib/netstandard2.0/System.Numerics.Vectors.dll",
+        "lib/netstandard2.0/System.Numerics.Vectors.xml",
+        "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.dll",
+        "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.xml",
+        "lib/uap10.0.16299/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/System.Numerics.Vectors.dll",
+        "ref/net45/System.Numerics.Vectors.xml",
+        "ref/net46/System.Numerics.Vectors.dll",
+        "ref/net46/System.Numerics.Vectors.xml",
+        "ref/netcoreapp2.0/_._",
+        "ref/netstandard1.0/System.Numerics.Vectors.dll",
+        "ref/netstandard1.0/System.Numerics.Vectors.xml",
+        "ref/netstandard2.0/System.Numerics.Vectors.dll",
+        "ref/netstandard2.0/System.Numerics.Vectors.xml",
+        "ref/uap10.0.16299/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.numerics.vectors.4.5.0.nupkg.sha512",
+        "system.numerics.vectors.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Private.DataContractSerialization/4.3.0": {
@@ -5152,6 +5431,27 @@
         "system.text.encoding.extensions.nuspec"
       ]
     },
+    "System.Text.Json/4.6.0": {
+      "sha512": "4F8Xe+JIkVoDJ8hDAZ7HqLkjctN/6WItJIzQaifBwClC7wmoLSda/Sv2i6i1kycqDb3hWF4JCVbpAweyOKHEUA==",
+      "type": "package",
+      "path": "system.text.json/4.6.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Text.Json.dll",
+        "lib/net461/System.Text.Json.xml",
+        "lib/netcoreapp3.0/System.Text.Json.dll",
+        "lib/netcoreapp3.0/System.Text.Json.xml",
+        "lib/netstandard2.0/System.Text.Json.dll",
+        "lib/netstandard2.0/System.Text.Json.xml",
+        "system.text.json.4.6.0.nupkg.sha512",
+        "system.text.json.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Text.RegularExpressions/4.3.0": {
       "sha512": "RpT2DA+L660cBt1FssIE9CAGpLFdFPuheB7pLpKpn6ZXNby7jDERe8Ua/Ne2xGiwLVG2JOqziiaVCGDon5sKFA==",
       "type": "package",
@@ -5372,20 +5672,39 @@
         "system.threading.tasks.nuspec"
       ]
     },
-    "System.Threading.Tasks.Extensions/4.3.0": {
-      "sha512": "npvJkVKl5rKXrtl1Kkm6OhOUaYGEiF9wFbppFRWSMoApKzt2PiPHT2Bb8a5sAWxprvdOAtvaARS9QYMznEUtug==",
+    "System.Threading.Tasks.Extensions/4.5.2": {
+      "sha512": "BG/TNxDFv0svAzx8OiMXDlsHfGw623BZ8tCXw4YLhDFDvDhNUEV58jKYMGRnkbJNm7c3JNNJDiN7JBMzxRBR2w==",
       "type": "package",
-      "path": "system.threading.tasks.extensions/4.3.0",
+      "path": "system.threading.tasks.extensions/4.5.2",
       "files": [
         ".nupkg.metadata",
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/netcoreapp2.1/_._",
         "lib/netstandard1.0/System.Threading.Tasks.Extensions.dll",
         "lib/netstandard1.0/System.Threading.Tasks.Extensions.xml",
+        "lib/netstandard2.0/System.Threading.Tasks.Extensions.dll",
+        "lib/netstandard2.0/System.Threading.Tasks.Extensions.xml",
         "lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.dll",
         "lib/portable-net45+win8+wp8+wpa81/System.Threading.Tasks.Extensions.xml",
-        "system.threading.tasks.extensions.4.3.0.nupkg.sha512",
-        "system.threading.tasks.extensions.nuspec"
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/netcoreapp2.1/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.threading.tasks.extensions.4.5.2.nupkg.sha512",
+        "system.threading.tasks.extensions.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Xml.ReaderWriter/4.3.0": {
@@ -5642,35 +5961,30 @@
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 3.1.8",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 3.1.8",
       "Microsoft.AspNetCore.Identity.UI >= 3.1.8",
+      "Microsoft.Azure.AppConfiguration.AspNetCore >= 4.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.8",
       "Microsoft.EntityFrameworkCore.Tools >= 3.1.8"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\debra_2qm34gh\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "/Users/Jennifer/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\debra_2qm34gh\\source\\repos\\BikesNBeersProjectVersion3\\BikesNBeers\\BikesNBeersMVC\\BikesNBeersMVC.csproj",
+      "projectUniqueName": "/Users/Jennifer/repos/GrpFinalProj/BikesNBeers/BikesNBeersMVC/BikesNBeersMVC.csproj",
       "projectName": "BikesNBeersMVC",
-      "projectPath": "C:\\Users\\debra_2qm34gh\\source\\repos\\BikesNBeersProjectVersion3\\BikesNBeers\\BikesNBeersMVC\\BikesNBeersMVC.csproj",
-      "packagesPath": "C:\\Users\\debra_2qm34gh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\debra_2qm34gh\\source\\repos\\BikesNBeersProjectVersion3\\BikesNBeers\\BikesNBeersMVC\\obj\\",
+      "projectPath": "/Users/Jennifer/repos/GrpFinalProj/BikesNBeers/BikesNBeersMVC/BikesNBeersMVC.csproj",
+      "packagesPath": "/Users/Jennifer/.nuget/packages/",
+      "outputPath": "/Users/Jennifer/repos/GrpFinalProj/BikesNBeers/BikesNBeersMVC/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\debra_2qm34gh\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/Jennifer/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5699,6 +6013,10 @@
             "target": "Package",
             "version": "[3.1.8, )"
           },
+          "Microsoft.Azure.AppConfiguration.AspNetCore": {
+            "target": "Package",
+            "version": "[4.0.0, )"
+          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[3.1.8, )"
@@ -5726,7 +6044,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.403/RuntimeIdentifierGraph.json"
       }
     }
   }
