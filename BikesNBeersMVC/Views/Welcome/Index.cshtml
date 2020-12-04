@@ -1,0 +1,24 @@
+﻿@model Welcome
+
+<h1>Welcome to BikesNBeers</h1>
+
+<form asp-action="Welcome">
+    <div class="form-group">
+        <label id="StartZip">Starting Zip Code</label>
+        <input asp-for="@Model.ZipCodeStart" id="StartZip" type="number" />
+    </div>
+
+    <div class="form-group">
+        <label id="MaxMiles">Maximum Number of Miles</label>
+        <input asp-for="@Model.MaxMiles" id="MaxMiles" type="number" />
+    </div>
+
+    <div class="form-group">
+        <label id="EndZip">Ending Zip Code</label>
+        <input asp-for="@Model.ZipCodeEnd" id="EndZip" type="number" />
+        <button class="btn btn-primary">Plan My Trip</button>
+    </div>
+    <input type="submit" value="submit" class="btn btn-primary" />
+    
+</form>
+
