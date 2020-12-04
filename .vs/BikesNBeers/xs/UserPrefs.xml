@@ -1,5 +1,5 @@
-﻿<Properties StartupConfiguration="{BBA3F1FD-6418-405E-A497-3C5248A12EC4}|BikesNBeers">
-  <MonoDevelop.Ide.Workbench ActiveDocument="BikesNBeersMVC/Startup.cs">
+﻿<Properties StartupConfiguration="{163CEC5D-A06D-4B27-BE23-16AF93D41F99}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BikesNBeersMVC/Controllers/WelcomeController.cs">
     <Files>
       <File FileName="BikesNBeersMVC/Services/CoordinateHandler.cs" Line="27" Column="1" IsPinned="True" />
       <File FileName="BikesNBeers/Startup.cs" />
@@ -12,18 +12,28 @@
       <File FileName="BikesNBeersMVC/Controllers/HomeController.cs" />
       <File FileName="BikesNBeers/Program.cs" Line="42" Column="40" />
       <File FileName="BikesNBeersMVC/Program.cs" Line="42" Column="33" />
-      <File FileName="BikesNBeersMVC/Startup.cs" Line="1" Column="1" />
+      <File FileName="BikesNBeersMVC/Startup.cs" Line="16" Column="25" />
+      <File FileName="BikesNBeersMVC/Models/RouteModel.cs" Line="38" Column="8" />
+      <File FileName="BikesNBeersMVC/Services/RouteHandler.cs" Line="1" Column="1" />
+      <File FileName="BikesNBeersMVC/Views/Welcome/Index.cshtml" Line="22" Column="5" />
+      <File FileName="BikesNBeersMVC/Models/Welcome.cs" Line="9" Column="1" />
+      <File FileName="BikesNBeersMVC/Views/Shared/_Layout.cshtml" Line="30" Column="19" />
+      <File FileName="BikesNBeersMVC/Controllers/WelcomeController.cs" Line="27" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BikesNBeers" expanded="True">
             <Node name="BikesNBeersAPI" expanded="True" />
-            <Node name="BikesNBeersMVC" expanded="True">
+            <Node name="BikesNBeersMVC" expanded="True" selected="True">
               <Node name="Controllers" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True" />
-              <Node name="Startup.cs" selected="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+                <Node name="Shared" expanded="True" />
+                <Node name="Welcome" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -32,10 +42,9 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.BikesNBeersMVC PreferredExecutionTarget="/Applications/Safari.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/Jennifer/repos/GrpFinalProj/BikesNBeers/BikesNBeersMVC/Startup.cs" relfile="BikesNBeersMVC/Startup.cs" line="23" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.BikesNBeersAPI PreferredExecutionTarget="/Applications/Safari.app" />
