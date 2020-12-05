@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ViewModel
+
+<h1>Map View</h1>
+
+    @{
+        var polyline = Model.Routes[0].overview_polyline.points;
+        var key = "AIzaSyAIuye8uznaqinBLqSaFxdr6u58oHdTBsg";
+        var length = Model.Routes[0].legs.Length - 1;
+        var source = $"https://www.google.com/maps/embed/v1/directions?key=AIzaSyAIuye8uznaqinBLqSaFxdr6u58oHdTBsg&mode=bicycling&avoid=highways&origin={Model.Routes[0].legs[0].start_location.lat},{Model.Routes[0].legs[0].start_location.lng}&destination={Model.Routes[0].legs[length].start_location.lat},{Model.Routes[0].legs[length].end_location.lng}&avoid=tolls|highways";
+    }
+    <iframe width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src=@source>
+    </iframe>
