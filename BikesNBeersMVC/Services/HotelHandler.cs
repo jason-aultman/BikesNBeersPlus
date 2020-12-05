@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using BikesNBeersMVC.Models;
 using System.Text.Json;
+using BikesNBeersMVC.Services.Interfaces;
 
 namespace BikesNBeersMVC.Services
 {
-    public class HotelHandler
+    public class HotelHandler : IHotelHandler
     {
         private HttpClient _httpClient;
 
@@ -20,22 +21,21 @@ namespace BikesNBeersMVC.Services
             };
         }
 
-        public async Task<HotelResponse> Hotel(int zipcode)
+        public HotelResponse GetHotel(int zipcode)
         {
             // call CoordinateHandler Service to do this
-            var httpResponseLatLong = await _httpClient.GetAsync($"geocode/json?address={zipcode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU");
+            var httpResponseLatLong = _httpClient.GetAsync($"geocode/json?address={zipcode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU").GetAwaiter().GetResult();
             httpResponseLatLong.EnsureSuccessStatusCode();
-            var contentLatLong = await httpResponseLatLong.Content.ReadAsStringAsync();
+            var contentLatLong = httpResponseLatLong.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             var resultLatLong = JsonSerializer.Deserialize<Coordinate>(contentLatLong);
 
 
             HotelResponse result = new HotelResponse();
             if (resultLatLong != null && resultLatLong.results.Length > 0 && resultLatLong.results[0].geometry != null)
             {
-                //string url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={resultLatLong.results[0].geometry.location.lat}.1298305&radius=1500&type=lodging&keyword=hotels&key=%20AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA";
-                var httpResponse = await _httpClient.GetAsync($"place/nearbysearch/json?location={resultLatLong.results[0].geometry.location.lat},{resultLatLong.results[0].geometry.location.lng}&radius=5000&keyword=hotel&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA");
+                var httpResponse = _httpClient.GetAsync($"place/nearbysearch/json?location={resultLatLong.results[0].geometry.location.lat},{resultLatLong.results[0].geometry.location.lng}&radius=5000&keyword=hotel&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA").GetAwaiter().GetResult();
                 httpResponse.EnsureSuccessStatusCode();
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content =  httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                 result = JsonSerializer.Deserialize<HotelResponse>(content);
             }
 

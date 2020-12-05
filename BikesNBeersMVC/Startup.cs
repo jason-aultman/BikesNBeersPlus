@@ -12,6 +12,8 @@ using BikesNBeersMVC.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using BikesNBeersMVC.Services;
+using BikesNBeersMVC.Services.Interfaces;
 
 namespace BikesNBeersMVC
 {
@@ -32,6 +34,10 @@ namespace BikesNBeersMVC
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddTransient<ICoordinateHandler, CoordinateHandler>();
+            services.AddTransient<IRouteHandler, RouteHandler>();
+            services.AddTransient<IBrewHandler, BrewHandler>();
+            services.AddTransient<IHotelHandler, HotelHandler>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

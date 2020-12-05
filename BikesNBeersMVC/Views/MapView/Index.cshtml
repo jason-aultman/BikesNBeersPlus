@@ -3,18 +3,24 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model ViewModel
+@model MapViewModel
 
 <h1>Map View</h1>
 
     @{
-        var polyline = Model.Routes[0].overview_polyline.points;
+        //  var startlat = Model.StartLat;
+        //   var startlng = Model.StartLng;
+        var startlat = 42.985249;
+        var startlng = -85.681084;
+        var endlng = Model.EndLng;
+        var endlat = Model.EndLat;
+
         var key = "AIzaSyAIuye8uznaqinBLqSaFxdr6u58oHdTBsg";
-        var length = Model.Routes[0].legs.Length - 1;
-        var source = $"https://www.google.com/maps/embed/v1/directions?key=AIzaSyAIuye8uznaqinBLqSaFxdr6u58oHdTBsg&mode=bicycling&avoid=highways&origin={Model.Routes[0].legs[0].start_location.lat},{Model.Routes[0].legs[0].start_location.lng}&destination={Model.Routes[0].legs[length].start_location.lat},{Model.Routes[0].legs[length].end_location.lng}&avoid=tolls|highways";
+        // var length = Model.Routes[0].legs.Length - 1;
+        var source = $"https://www.google.com/maps/embed/v1/directions?key={key}&mode=bicycling&avoid=highways&origin={startlat},{startlng}&destination={endlat},{endlng}&avoid=tolls|highways";
     }
-    <iframe width="600"
-            height="450"
-            frameborder="0" style="border:0"
+    <iframe width="800"
+            height="600"
+            frameborder="0" style="border:2"
             src=@source>
     </iframe>

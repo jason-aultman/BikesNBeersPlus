@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using BikesNBeersMVC.Models;
 using System.Text.Json;
+using BikesNBeersMVC.Services.Interfaces;
 
 namespace BikesNBeersMVC.Services
 {
-    public class BrewHandler
+    public class BrewHandler : IBrewHandler
     {
         private HttpClient _httpClient;
         private readonly JsonSerializerOptions _options;
@@ -28,12 +29,12 @@ namespace BikesNBeersMVC.Services
             };
         }
 
-        public async Task<BreweryResponse> GetBrewery(int zipcode)
+        public BreweryResponse GetBrewery(int zipcode)
         {
             // call CoordinateHandler Service to do this
-            var httpResponseLatLong = await _httpClient.GetAsync($"geocode/json?address={zipcode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU");
+            var httpResponseLatLong = _httpClient.GetAsync($"geocode/json?address={zipcode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU").GetAwaiter().GetResult();
             httpResponseLatLong.EnsureSuccessStatusCode();
-            var contentLatLong = await httpResponseLatLong.Content.ReadAsStringAsync();
+            var contentLatLong = httpResponseLatLong.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             var resultLatLong = JsonSerializer.Deserialize<Coordinate>(contentLatLong);
 
 
@@ -41,9 +42,9 @@ namespace BikesNBeersMVC.Services
             if (resultLatLong != null && resultLatLong.results.Length > 0 && resultLatLong.results[0].geometry != null)
             {
                 //string url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={resultLatLong.results[0].geometry.location.lat}.1298305&radius=1500&type=lodging&keyword=hotels&key=%20AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA";
-                var httpResponse = await _httpClient.GetAsync($"place/nearbysearch/json?location={resultLatLong.results[0].geometry.location.lat},{resultLatLong.results[0].geometry.location.lng}&radius=5000&keyword=brewery&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA");
+                var httpResponse = _httpClient.GetAsync($"place/nearbysearch/json?location={resultLatLong.results[0].geometry.location.lat},{resultLatLong.results[0].geometry.location.lng}&radius=5000&keyword=brewery&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA").GetAwaiter().GetResult();
                 httpResponse.EnsureSuccessStatusCode();
-                var content = await httpResponse.Content.ReadAsStringAsync();
+                var content = httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                 result = JsonSerializer.Deserialize<BreweryResponse>(content, _options);
             }
 

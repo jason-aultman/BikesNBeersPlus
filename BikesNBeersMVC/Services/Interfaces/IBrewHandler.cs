@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BikesNBeersMVC.Services.Interfaces
+namespace BikesNBeersMVC.Services
 {
-    interface IBrewHandler
+    public interface IBrewHandler
     {
+        public BreweryResponse GetBrewery(int zipcode);
+
     }
 }

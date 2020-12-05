@@ -48,10 +48,10 @@ namespace BikesNBeersMVC.Controllers
             Coordinate2.results[0].geometry.location.lng = -83.3527F;
             var testRoute = routeService.GetRoute(Coordinate1, Coordinate2);
             var testCoordinate = coordinate.GetCoordinates(90210);
-            var testHotelResponse = hotelResponse.Hotel(90210);
-            var testHotelResponseResult = testHotelResponse.GetAwaiter().GetResult();
+            var testHotelResponse = hotelResponse.GetHotel(90210);
+            var testHotelResponseResult = testHotelResponse;
             var testbreweryResponse = breweryResponse.GetBrewery(90210);
-            var testbreweryResponseResult = testbreweryResponse.GetAwaiter().GetResult();
+            var testbreweryResponseResult = testbreweryResponse;
             viewModel.Breweries = testbreweryResponseResult;
             viewModel.HotelResponses = testHotelResponseResult;
             viewModel.Routes = testRoute.routes;
