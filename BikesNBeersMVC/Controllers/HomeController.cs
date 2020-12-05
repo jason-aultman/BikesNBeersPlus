@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using BikesNBeersMVC.Models;
 using BikesNBeersMVC.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BikesNBeersMVC.Controllers
 {
@@ -18,7 +19,7 @@ namespace BikesNBeersMVC.Controllers
         {
             _logger = logger;
         }
-
+        [Authorize]
         public IActionResult Index()
         {
             var coordinate = new CoordinateHandler();
