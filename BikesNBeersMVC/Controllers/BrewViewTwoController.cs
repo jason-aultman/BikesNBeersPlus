@@ -21,7 +21,7 @@ namespace BikesNBeersMVC.Controllers
             var breweryResults = _brewHandler.GetBrewery(welcome.ZipCodeStart, welcome.MaxMiles);
             var viewModel = new ViewModel();
             viewModel.Breweries = breweryResults;
-            return View();
+            return View(viewModel);
         }
         //public IActionResult Index(int zip, double miles)
         //{

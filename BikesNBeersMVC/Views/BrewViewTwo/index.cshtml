@@ -6,13 +6,12 @@
 
 @model ViewModel
 
-<h1>Breweries available within a distance of your starting location</h1>
+<h3>Breweries and ratings available within max# miles of your starting location</h3>
 
-@foreach(var brew in Model.Breweries.Results)
+@foreach (var brew in Model.Breweries.Results)
 {
-   
-       @brew.Name;
-       @brew.Rating;
-   
+
+   <h6>@brew.Name (@brew.Rating) </h6>
+  
 }
 

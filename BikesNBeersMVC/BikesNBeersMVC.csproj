@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <Folder Include="Views\Welcome\" />
+    <Folder Include="Views\TripSummary\" />
+    <Folder Include="Views\UserSummary\" />
   </ItemGroup>
 
 </Project>
