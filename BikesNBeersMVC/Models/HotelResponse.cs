@@ -10,6 +10,10 @@ namespace BikesNBeersMVC.Models
         public string status { get; set; }
     }
 
+    public class HotelSearchModel {
+        public int ZipCode { get; set; }
+    }
+
     public class HotelResult
     {
         public string business_status { get; set; }

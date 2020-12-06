@@ -1,0 +1,56 @@
+﻿@*@model BikesNBeers.Models.HotelResponse*@
+@model HotelResult[]
+
+@{
+    ViewData["Title"] = "Hotel";
+}
+
+<h1>Hotel</h1>
+
+
+
+
+
+<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.name</td>
+                <td>@item.rating</td>
+                <td>@item.vicinity</td>
+                <td>@item.place_id</td>
+                <td>@string.Join(", ", @item.types)</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+@*<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Hotel">
+            <div class="form-group">
+                <label class="control-label"></label>
+                <input name="zipcode" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ZipCode" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>*@
