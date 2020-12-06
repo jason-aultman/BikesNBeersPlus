@@ -9,7 +9,7 @@ using BikesNBeersMVC.Models;
 
 namespace BikesNBeersMVC.Services
 {
-    public class CoordinateHandler
+    public class CoordinateHandler : ICoordinateHandler
     {
         private HttpClient _httpClient;
         private JsonSerializerOptions _options;
@@ -29,7 +29,7 @@ namespace BikesNBeersMVC.Services
         public Coordinate GetCoordinates(int zipCode)
         {
 
-            var httpResponse = _httpClient.GetAsync($"/geocode/json?address={zipCode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU").GetAwaiter().GetResult();
+            var httpResponse = _httpClient.GetAsync($"geocode/json?address={zipCode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU").GetAwaiter().GetResult();
             if (httpResponse.IsSuccessStatusCode)
             {
                 var content = httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();

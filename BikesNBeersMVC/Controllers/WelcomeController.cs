@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BikesNBeersMVC.Controllers
 {
+   // [Authorize]
     public class WelcomeController : Controller
     {
         // GET: /<controller>/

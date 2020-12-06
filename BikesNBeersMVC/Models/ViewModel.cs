@@ -10,7 +10,5 @@ namespace BikesNBeersMVC.Models
         public BreweryResponse Breweries { get; set; }
         public HotelResponse HotelResponses { get; set; }
         public Route[] Routes { get; set; }
-
-
     }
 }

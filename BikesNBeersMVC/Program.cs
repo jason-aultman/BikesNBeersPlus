@@ -24,9 +24,7 @@ namespace BikesNBeersMVC
       {
           config.SetBasePath(webHostBuilderContext.HostingEnvironment.ContentRootPath)
              .AddUserSecrets(typeof(Program).Assembly)
-             .AddEnvironmentVariables()
-             .AddJsonFile("appsettings.json")
-             .AddJsonFile($"appsettings.{webHostBuilderContext.HostingEnvironment.EnvironmentName}.json");
+             .AddEnvironmentVariables();
           var intermediate = config.Build();
           config.AddAzureAppConfiguration(options =>
           {
