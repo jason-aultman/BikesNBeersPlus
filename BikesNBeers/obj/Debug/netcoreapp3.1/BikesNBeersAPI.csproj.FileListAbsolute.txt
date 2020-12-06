@@ -179,6 +179,7 @@ C:/Users/debra_2qm34gh/source/repos/BikesNBeersProjectVersion3/BikesNBeers/Bikes
 /Users/Jennifer/repos/GrpFinalProj/BikesNBeers/BikesNBeers/bin/Debug/netcoreapp3.1/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/Jennifer/repos/GrpFinalProj/BikesNBeers/BikesNBeers/bin/Debug/netcoreapp3.1/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /Users/Jennifer/repos/GrpFinalProj/BikesNBeers/BikesNBeers/bin/Debug/netcoreapp3.1/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/Users/Jennifer/repos/GrpFinalProj/BikesNBeers/BikesNBeers/obj/Debug/netcoreapp3.1/BikesNBeersAPI.csprojAssemblyReference.cache
 /Users/Jennifer/repos/GrpFinalProj/BikesNBeers/BikesNBeers/obj/Debug/netcoreapp3.1/BikesNBeersAPI.AssemblyInfoInputs.cache
 /Users/Jennifer/repos/GrpFinalProj/BikesNBeers/BikesNBeers/obj/Debug/netcoreapp3.1/BikesNBeersAPI.AssemblyInfo.cs
 /Users/Jennifer/repos/GrpFinalProj/BikesNBeers/BikesNBeers/obj/Debug/netcoreapp3.1/BikesNBeersAPI.csproj.CoreCompileInputs.cache

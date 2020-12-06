@@ -26,9 +26,6 @@ namespace BikesNBeersMVC.Services
                 PropertyNameCaseInsensitive = true
             };
 
-
-
-
         }
         public RouteModel GetRoute(Coordinate Start, Coordinate End)
         {
@@ -37,13 +34,7 @@ namespace BikesNBeersMVC.Services
             var routeModel = JsonSerializer.Deserialize<RouteModel>(requestToJson, _options);
             return routeModel;
         }
-
-        
-
-
-      
-        
-
+  
     }
 
 }

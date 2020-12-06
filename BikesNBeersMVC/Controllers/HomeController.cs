@@ -14,7 +14,7 @@ namespace BikesNBeersMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+       
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -23,8 +23,8 @@ namespace BikesNBeersMVC.Controllers
         public IActionResult Index()
         {
             var coordinate = new CoordinateHandler();
-            var hotelResponse = new HotelHandler();
-            var breweryResponse = new BrewHandler();
+            var hotelResponse = new HotelHandler(coordinate);
+            var breweryResponse = new BrewHandler(coordinate);
             var viewModel = new ViewModel();
             var routeService = new RouteHandler();
             var Coordinate1 = new Coordinate();
