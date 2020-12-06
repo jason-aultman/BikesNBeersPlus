@@ -49,7 +49,7 @@ namespace BikesNBeersMVC.Services
             return result;
         }
 
-        public BreweryResponse GetBrewery(int zipcode, int distance_in_miles)
+        public BreweryResponse GetBrewery(int zipcode, double distance_in_miles)
         {
             var httpResponseLatLong = _httpClient.GetAsync($"geocode/json?address={zipcode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU").GetAwaiter().GetResult();
             httpResponseLatLong.EnsureSuccessStatusCode();

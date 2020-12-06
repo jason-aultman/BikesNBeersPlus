@@ -364,3 +364,4 @@ C:\Users\jason\source\repos\BikesNBeers\BikesNBeersMVC\obj\Debug\netcoreapp3.1\B
 C:\Users\jason\source\repos\BikesNBeers\BikesNBeersMVC\obj\Debug\netcoreapp3.1\BikesNBeersMVC.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\jason\source\repos\BikesNBeers\BikesNBeersMVC\obj\Debug\netcoreapp3.1\BikesNBeersMVC.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\jason\source\repos\BikesNBeers\BikesNBeersMVC\obj\Debug\netcoreapp3.1\Razor\Views\MapView\Index.cshtml.g.cs
+C:\Users\jason\source\repos\BikesNBeers\BikesNBeersMVC\obj\Debug\netcoreapp3.1\Razor\Views\BrewViewTwo\index.cshtml.g.cs

@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ViewModel
+
+<h1>Breweries available within a distance of your starting location</h1>
+
+@foreach(var brew in Model.Breweries.Results)
+{
+   
+       @brew.Name;
+       @brew.Rating;
+   
+}
+
