@@ -8,10 +8,39 @@
 
 <h3>Breweries and ratings available within max# miles of your starting location</h3>
 
-@foreach (var brew in Model.Breweries.Results)
-{
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Rating
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-   <h6>@brew.Name (@brew.Rating) </h6>
-  
-}
+        @foreach (var item in Model.Breweries.Results)
+        {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Rating</td>
+            <td>@item.Vicinity</td>
+            <td>@Html.ActionLink(
+               "Select",
+               "Details",
+               "Selection",
+               item,
+               null)</td>
 
+            @*<td>@item.place_id</td>
+        <td>@string.Join(", ", @item.types)</td>*@
+        </tr>
+        }
+    </tbody>
+</table>

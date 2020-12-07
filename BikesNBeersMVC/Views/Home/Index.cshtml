@@ -6,7 +6,13 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <h1>
+    <h3>
+        @Html.ActionLink(
+       "Click here to enter",
+       "Index",
+       "Welcome")
+    </h3>
+    @*<h1>
         Hotels List
     </h1>
     <br />
@@ -46,5 +52,5 @@
         <b>Destination: </b> @leg.end_address
     }
 
-</div>
+</div>*@
 </div>
