@@ -14,17 +14,19 @@ namespace BikesNBeersMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ICoordinateHandler _coordinateHandler;
        
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICoordinateHandler coordinate)
         {
             _logger = logger;
+            _coordinateHandler = coordinate;
         }
        // [Authorize]
         public IActionResult Index()
         {
-            var coordinate = new CoordinateHandler();
-            var hotelResponse = new HotelHandler(coordinate);
-            var breweryResponse = new BrewHandler(coordinate);
+          //  var coordinate = new CoordinateHandler();
+            var hotelResponse = new HotelHandler(_coordinateHandler);
+            var breweryResponse = new BrewHandler(_coordinateHandler);
             var viewModel = new ViewModel();
             var routeService = new RouteHandler();
             var Coordinate1 = new Coordinate();
@@ -48,7 +50,7 @@ namespace BikesNBeersMVC.Controllers
             Coordinate2.results[0].geometry.location.lat = 42.3684F;
             Coordinate2.results[0].geometry.location.lng = -83.3527F;
             var testRoute = routeService.GetRoute(Coordinate1, Coordinate2);
-            var testCoordinate = coordinate.GetCoordinates(90210);
+            var testCoordinate = _coordinateHandler.GetCoordinates(90210);
             var testHotelResponse = hotelResponse.GetHotel(90210);
             var testHotelResponseResult = testHotelResponse;
             var testbreweryResponse = breweryResponse.GetBrewery(90210);
