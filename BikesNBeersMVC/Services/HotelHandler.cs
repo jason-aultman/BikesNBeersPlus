@@ -32,17 +32,27 @@ namespace BikesNBeersMVC.Services
             //var resultLatLong = JsonSerializer.Deserialize<Coordinate>(contentLatLong);
 
             var coordResults = _coordinateHandler.GetCoordinates(zipcode);
-            
+
             HotelResponse result = new HotelResponse();
             if (coordResults != null && coordResults.results.Length > 0 && coordResults.results[0].geometry != null)
             {
                 var httpResponse = _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius=5000&keyword=hotel&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA").GetAwaiter().GetResult();
                 httpResponse.EnsureSuccessStatusCode();
-                var content =  httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var content = httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                 result = JsonSerializer.Deserialize<HotelResponse>(content);
+
+                //getting photo api
+                if (result != null && result.results != null)
+                {
+                    foreach (var hotel in result.results)
+                    {
+                        if (hotel.photos != null && hotel.photos.Length > 0)
+                            hotel.photoURL = $"https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference={hotel.photos[0].photo_reference}&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA";
+                    }
+                }
             }
 
-            //ViewBag["result"] = result;
+            
 
             return result;
         }

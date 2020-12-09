@@ -15,6 +15,9 @@
         <thead>
             <tr>
                 <th>
+                    Image
+                </th>
+                <th>
                     Name
                 </th>
                 <th>
@@ -31,6 +34,9 @@
             @foreach (var item in Model)
             {
             <tr>
+                <td>
+                    <img src="@Url.Content(item.photoURL)" alt="@item.name" />
+                </td>
                 <td>@item.name</td>
                 <td>@item.rating</td>
                 <td>@item.vicinity</td>
