@@ -21,6 +21,7 @@ namespace BikesNBeersMVC.Models
         public string icon { get; set; }
         public string name { get; set; }
         public Photo[] photos { get; set; }
+        public string photoURL { get; set; }
         public string place_id { get; set; }
         public Plus_Code plus_code { get; set; }
         public float rating { get; set; }
