@@ -23,6 +23,15 @@ namespace BikesNBeersMVC.Controllers
             viewModel.Breweries = breweryResults;
             return View(viewModel);
         }
+
+        public IActionResult BrewDestGiven(Welcome welcome)
+        {
+            var breweryResults = _brewHandler.GetBrewery(welcome.ZipCodeEnd);
+            var viewModel = new ViewModel();
+            viewModel.Breweries = breweryResults;
+            return View("Index", viewModel);
+        }
+
         //public IActionResult Index(int zip, double miles)
         //{
         //    var breweryResults = _brewHandler.GetBrewery(zip, miles);
