@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using BikesNBeersMVC.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -14,9 +15,31 @@ namespace BikesNBeersMVC.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { 
         }
+        public DbSet<BikerInfo> BikerInfos { get; set; }
+        public DbSet<Stop> Stops { get; set; }
+        public DbSet<Badges> Badges { get; set; }
+        public DbSet<Trip> Trips { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<BikerInfo>(b =>
+            {
+                b.HasKey(k => k.Id);
+            });
+            builder.Entity<Stop>(b =>
+            {
+                b.HasKey(k => k.Id);
+            }); 
+            builder.Entity<Badges>(b =>
+            {
+                b.HasKey(k => k.Id);
+            }); 
+            builder.Entity<Trip>(b =>
+            {
+                b.HasKey(k => k.Id);
+            });
+
         }
     }
    
