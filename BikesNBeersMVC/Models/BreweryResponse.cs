@@ -28,6 +28,7 @@ namespace BikesNBeersMVC
         public List<string> Types { get; set; }
         public long UserRatingsTotal { get; set; }
         public string Vicinity { get; set; }
+        public string photoURL { get; internal set; }
     }
 
     public partial class Geometry
@@ -56,8 +57,8 @@ namespace BikesNBeersMVC
     public partial class Photo
     {
         public long Height { get; set; }
-        public List<string> HtmlAttributions { get; set; }
-        public string PhotoReference { get; set; }
+        public List<string> Html_Attributions { get; set; }
+        public string Photo_Reference { get; set; }
         public long Width { get; set; }
     }
 

@@ -23,8 +23,8 @@ namespace BikesNBeersMVC.Services
             };
             _options = new JsonSerializerOptions()
             {
-                AllowTrailingCommas=true,
-                PropertyNameCaseInsensitive=true,
+                AllowTrailingCommas = true,
+                PropertyNameCaseInsensitive = true,
             };
             _coordinateHandler = coord;
         }
@@ -52,7 +52,7 @@ namespace BikesNBeersMVC.Services
 
         public BreweryResponse GetBrewery(int zipcode, double distance_in_miles)
         {
-           
+
             //var httpResponseLatLong = _httpClient.GetAsync($"geocode/json?address={zipcode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU").GetAwaiter().GetResult();
             //httpResponseLatLong.EnsureSuccessStatusCode();
             //var contentLatLong = httpResponseLatLong.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -67,10 +67,19 @@ namespace BikesNBeersMVC.Services
                 httpResponse.EnsureSuccessStatusCode();
                 var content = httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
                 result = JsonSerializer.Deserialize<BreweryResponse>(content, _options);
+
+                //getting photo api
+                if (result != null && result.Results != null)
+                {
+                    foreach (var brewery in result.Results)
+                    {
+                        if (brewery.Photos != null && brewery.Photos.Count > 0)
+                            brewery.photoURL = $"https://maps.googleapis.com/maps/api/place/photo?maxwidth=100&photoreference={brewery.Photos[0].Photo_Reference}&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA";
+                    }
+                }
             }
 
             return result;
-
         }
     }
 }

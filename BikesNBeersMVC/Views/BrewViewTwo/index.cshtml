@@ -20,6 +20,9 @@
             <th>
                 Address
             </th>
+            <th>
+                Image
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -31,15 +34,20 @@
             <td>@item.Name</td>
             <td>@item.Rating</td>
             <td>@item.Vicinity</td>
-            <td>@Html.ActionLink(
-               "Select",
-               "Details",
-               "Selection",
-               item,
-               null)</td>
+            <td>
+                <img src="@Url.Content(item.photoURL)" alt="@item.Name" />
+            </td>
+            <td>
+                @Html.ActionLink(
+           "Select",
+           "Details",
+           "Selection",
+           item,
+           null)
+        </td>
 
-            @*<td>@item.place_id</td>
-        <td>@string.Join(", ", @item.types)</td>*@
+        @*<td>@item.place_id</td>
+    <td>@string.Join(", ", @item.types)</td>*@
         </tr>
         }
     </tbody>
