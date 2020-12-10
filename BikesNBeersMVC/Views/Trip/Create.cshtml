@@ -1,0 +1,47 @@
+@model BikesNBeersMVC.Models.Trip
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Trip</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TripMiles" class="control-label"></label>
+                <input asp-for="TripMiles" class="form-control" />
+                <span asp-validation-for="TripMiles" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TripDate" class="control-label"></label>
+                <input asp-for="TripDate" class="form-control" />
+                <span asp-validation-for="TripDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TripRating" class="control-label"></label>
+                <input asp-for="TripRating" class="form-control" />
+                <span asp-validation-for="TripRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BikerInfoId" class="control-label"></label>
+                <select asp-for="BikerInfoId" class ="form-control" asp-items="ViewBag.BikerInfoId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
