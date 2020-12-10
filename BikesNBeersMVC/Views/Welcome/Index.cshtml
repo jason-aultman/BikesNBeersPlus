@@ -5,9 +5,14 @@
 
 
 <form asp-action="Welcome">
-    <div class="form-group">
-        <label id="StartZip">Starting Zip Code</label>
+   @* <div class="form-group">
+        <label id="StartZip">Starting Zip</label>
         <input asp-for="@Model.ZipCodeStart" id="StartZip" type="text" inputmode="numeric" />
+    </div>*@
+    
+    <div class="form-group">
+        <label id="StartAddress">Starting Address</label>
+        <input asp-for="@Model.AddressStart" id="StartAddress" type="text" inputmode="verbatim" />
     </div>
 
     <div class="form-group">

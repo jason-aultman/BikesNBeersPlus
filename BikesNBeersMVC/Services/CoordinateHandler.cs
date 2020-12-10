@@ -51,5 +51,18 @@ namespace BikesNBeersMVC.Services
             //InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'BikesNBeerVersion2.Services.Rootobject', but this ViewDataDictionary instance requires a model item of type 'BikesNBeerVersion2.Services.Result'.
 
         }
+
+        public Coordinate GetCoordinatesByAddress(string address)
+        {
+            var refinedAddress=address.Replace(' ', '+');
+            var httpResponse = _httpClient.GetAsync($"geocode/json?address={refinedAddress}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU").GetAwaiter().GetResult();
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                var content = httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var coordinate = JsonSerializer.Deserialize<Coordinate>(content, _options);
+                return coordinate;
+            }
+            else return new Coordinate();
+        }
     }
 }

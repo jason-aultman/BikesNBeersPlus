@@ -9,5 +9,6 @@ namespace BikesNBeersMVC.Services
     {
         public BreweryResponse GetBrewery(int zipcode);
         public BreweryResponse GetBrewery(int zipcode, double distance_in_miles);
+        public BreweryResponse GetBreweryByAddress(string address, double distanceInMiles);
     }
 }

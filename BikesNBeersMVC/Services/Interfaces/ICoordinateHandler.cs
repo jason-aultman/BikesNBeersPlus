@@ -6,6 +6,7 @@ namespace BikesNBeersMVC.Services
     public interface ICoordinateHandler
     {
         public Coordinate GetCoordinates(int zipCode);
+        public Coordinate GetCoordinatesByAddress(string address);
     }
     
 }

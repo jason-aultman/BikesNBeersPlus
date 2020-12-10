@@ -7,5 +7,7 @@ namespace BikesNBeersMVC.Models
         public int ZipCodeStart { get; set; }
         public int ZipCodeEnd { get; set; }
 
+        public string AddressStart { get; set; }
+        
     }
 }

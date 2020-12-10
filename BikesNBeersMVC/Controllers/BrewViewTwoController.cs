@@ -18,7 +18,7 @@ namespace BikesNBeersMVC.Controllers
         }
         public IActionResult Index(Welcome welcome)
         {
-            var breweryResults = _brewHandler.GetBrewery(welcome.ZipCodeStart, welcome.MaxMiles);
+            var breweryResults = _brewHandler.GetBreweryByAddress(welcome.AddressStart , welcome.MaxMiles);
             var viewModel = new ViewModel();
             viewModel.Breweries = breweryResults;
             return View(viewModel);
