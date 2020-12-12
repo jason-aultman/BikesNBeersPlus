@@ -1,54 +1,69 @@
 ﻿
 @{
-    ViewData["Title"] = "index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewData["Title"] = "index";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @model ViewModel
 
 <h3>Breweries and ratings available within max# miles of your starting location</h3>
-
-<table class="table table-striped">
+<form action="/BrewViewTwo/selectedBrewView" method="post" id="form">
+  <table class="table table-striped">
     <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Rating
-            </th>
-            <th>
-                Address
-            </th>
-            <th>
-                Image
-            </th>
-            <th></th>
-        </tr>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Rating
+        </th>
+        <th>
+          Address
+        </th>
+        <th>
+          Image
+        </th>
+        <th></th>
+      </tr>
     </thead>
     <tbody>
-
-        @foreach (var item in Model.Breweries.Results)
+      @if (Model.Breweries.Results != null)
+      {
+        for (var i = 0; i < Model.Breweries.Results.Count(); i++)
         {
-        <tr>
-            <td>@item.Name</td>
-            <td>@item.Rating</td>
-            <td>@item.Vicinity</td>
+          <tr>
+              <td>
+                  @Html.HiddenFor(x => Model.Breweries.Results[i].photoURL)
+                  @Model.Breweries.Results[i].Name
+                  @Html.HiddenFor(x => Model.Breweries.Results[i].Name)
+              </td>
             <td>
-                <img src="@Url.Content(item.photoURL)" alt="@item.Name" />
+              @Model.Breweries.Results[i].Rating
+              @Html.HiddenFor(x => Model.Breweries.Results[i].Rating)
             </td>
             <td>
-                @Html.ActionLink(
-           "Select",
-           "Details",
-           "Selection",
-           item,
-           null)
-        </td>
-
-        @*<td>@item.place_id</td>
-    <td>@string.Join(", ", @item.types)</td>*@
-        </tr>
+              @Model.Breweries.Results[i].Vicinity
+              @Html.HiddenFor(x => Model.Breweries.Results[i].Vicinity)
+            </td>
+            <td>
+                <img src="@Url.Content(Model.Breweries.Results[i].photoURL)" alt="@Model.Breweries.Results[i].Name" />
+               
+            </td>
+            <td>
+              @Html.DropDownListFor(x => Model.Breweries.Results[i].selected, new List<SelectListItem>
+              {
+                  new SelectListItem{ Text="Choice", Value = "0" },
+                  new SelectListItem{ Text="Selected", Value = "1" }
+               })
+            </td>
+          </tr>
         }
+      }
     </tbody>
-</table>
+  </table>
+  <div class="row">
+    <div class="col-md-12 float-right">
+      <button type="submit" value="Save" style="float:right" class="btn btn-success">Select</button>
+    </div>
+  </div>
+</form>

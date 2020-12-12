@@ -1,0 +1,42 @@
+﻿
+@{
+  ViewData["Title"] = "Selected Brew View";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<BikesNBeersMVC.Result>
+
+<h3>Selected Brew View</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+      <th>
+        Rating
+      </th>
+      <th>
+        Address
+      </th>
+      <th>
+        Image
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td>@item.Name</td>
+        <td>@item.Rating</td>
+        <td>@item.Vicinity</td>
+        <td>
+          <img src="@Url.Content(item.photoURL)" alt="@item.Name" />
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

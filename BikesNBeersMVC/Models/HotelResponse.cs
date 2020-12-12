@@ -12,10 +12,12 @@ namespace BikesNBeersMVC.Models
 
     public class HotelSearchModel {
         public int ZipCode { get; set; }
+        public string Address { get; set; }
     }
 
     public class HotelResult
     {
+        public int selected { get; set; }
         public string business_status { get; set; }
         public Geometry geometry { get; set; }
         public string icon { get; set; }

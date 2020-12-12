@@ -23,7 +23,7 @@ namespace BikesNBeersMVC.Services
             _coordinateHandler = coord;
         }
 
-        public HotelResponse GetHotel(int zipcode)
+        public HotelResponse GetHotel(string zipcode)
         {
             // call CoordinateHandler Service to do this
             //var httpResponseLatLong = _httpClient.GetAsync($"geocode/json?address={zipcode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU").GetAwaiter().GetResult();

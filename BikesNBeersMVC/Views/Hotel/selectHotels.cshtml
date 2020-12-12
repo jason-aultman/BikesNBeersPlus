@@ -1,0 +1,60 @@
+﻿@model List<HotelResult>
+@{
+  ViewData["Title"] = "select Hotels";
+}
+
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>Selected Hotels</h2>
+  </div>
+  <div class="col-md-12">
+    <table class="table table-striped" style="margin-bottom:5px">
+      <thead>
+        <tr>
+          <th>
+            Image
+          </th>
+          <th>
+            Name
+          </th>
+          <th>
+            Rating
+          </th>
+          <th>
+            Address
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (Model != null)
+        {
+          for (var i = 0; i < Model.Count(); i++)
+          {
+            <tr>
+              <td>
+                <img src="@Url.Content(Model[i].photoURL)" alt="@Model[i].name" />
+                @Html.HiddenFor(x => Model[i].photoURL)
+              </td>
+              <td>
+                @Model[i].name
+                @Html.HiddenFor(x => Model[i].name)
+              </td>
+              <td>
+                @Model[i].rating
+                @Html.HiddenFor(x => Model[i].rating)
+              </td>
+              <td>
+                @Model[i].vicinity
+                @Html.HiddenFor(x => Model[i].vicinity)
+              </td>
+
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

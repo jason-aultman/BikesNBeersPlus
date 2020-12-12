@@ -2,7 +2,7 @@
 @model HotelResult[]
 
 @{
-    ViewData["Title"] = "Hotel";
+  ViewData["Title"] = "Hotel";
 }
 
 <h1>Hotel</h1>
@@ -10,53 +10,77 @@
 
 
 
+<form action="/Hotel/selectHotels" method="post" id="form">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>
+          Image
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Rating
+        </th>
+        <th>
+          Address
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (Model != null)
+      {
+        for (var i = 0; i < Model.Count(); i++)
+        {
+          <tr>
+            <td>
+              <img src="@Url.Content(Model[i].photoURL)" alt="@Model[i].name" />
+              @Html.HiddenFor(x => Model[i].photoURL)
+            </td>
+            <td>
+              @Model[i].name
+              @Html.HiddenFor(x => Model[i].name)
+            </td>
+            <td>
+              @Model[i].rating
+              @Html.HiddenFor(x => Model[i].rating)
+            </td>
+            <td>
+              @Model[i].vicinity
+              @Html.HiddenFor(x => Model[i].vicinity)
+            </td>
+            <td>
+              @Html.DropDownListFor(x => Model[i].selected, new List<SelectListItem>
+              {
+                  new SelectListItem{ Text="Choice", Value = "0" },
+                  new SelectListItem{ Text="Selected", Value = "1" }
+               })
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-md-12 float-right">
+      <button type="submit" value="Save" style="float:right" class="btn btn-success">Select</button>
+    </div>
+  </div>
+</form>
 
-<table class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    Image
-                </th>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Rating
-                </th>
-                <th>
-                    Address
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var item in Model)
-            {
-            <tr>
-                <td>
-                    <img src="@Url.Content(item.photoURL)" alt="@item.name" />
-                </td>
-                <td>@item.name</td>
-                <td>@item.rating</td>
-                <td>@item.vicinity</td>
-                @*<td>@item.place_id</td>
-                <td>@string.Join(", ", @item.types)</td>*@
-            </tr>
-            }
-        </tbody>
-    </table>
 
 @*<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Hotel">
-            <div class="form-group">
-                <label class="control-label"></label>
-                <input name="zipcode" class="form-control" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="ZipCode" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>*@
+      <div class="col-md-4">
+          <form asp-action="Hotel">
+              <div class="form-group">
+                  <label class="control-label"></label>
+                  <input name="zipcode" class="form-control" />
+              </div>
+              <div class="form-group">
+                  <input type="submit" value="ZipCode" class="btn btn-primary" />
+              </div>
+          </form>
+      </div>
+  </div>*@

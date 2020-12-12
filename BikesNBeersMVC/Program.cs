@@ -26,16 +26,16 @@ namespace BikesNBeersMVC
              .AddUserSecrets(typeof(Program).Assembly)
              .AddEnvironmentVariables();
           var intermediate = config.Build();
-          config.AddAzureAppConfiguration(options =>
-          {
-              options.Connect(intermediate["AppConfig"])
-                 .Select(KeyFilter.Any, LabelFilter.Null);
+          //config.AddAzureAppConfiguration(options =>
+          //{
+          //    options.Connect(intermediate["AppConfig"])
+          //       .Select(KeyFilter.Any, LabelFilter.Null);
 
-              options.ConfigureRefresh(refresh =>
-              {
-                  refresh.Register("refreshKey", refreshAll: true);
-              });
-          });
+          //    options.ConfigureRefresh(refresh =>
+          //    {
+          //        refresh.Register("refreshKey", refreshAll: true);
+          //    });
+          //});
           config.Build();
       }).UseStartup<Startup>());
     }

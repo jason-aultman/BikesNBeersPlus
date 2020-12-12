@@ -29,7 +29,7 @@ namespace BikesNBeersMVC.Services
             _coordinateHandler = coord;
         }
 
-        public BreweryResponse GetBrewery(int zipcode)
+        public BreweryResponse GetBrewery(string zipcode)
         {
             var coordResults = _coordinateHandler.GetCoordinates(zipcode);
 
@@ -44,7 +44,7 @@ namespace BikesNBeersMVC.Services
             return result;
         }
 
-        public BreweryResponse GetBrewery(int zipcode, double distance_in_miles)
+        public BreweryResponse GetBrewery(string zipcode, double distance_in_miles)
         {
 
           

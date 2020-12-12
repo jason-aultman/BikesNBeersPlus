@@ -26,7 +26,7 @@ namespace BikesNBeersMVC.Services
             };
 
         }
-        public Coordinate GetCoordinates(int zipCode)
+        public Coordinate GetCoordinates(string zipCode)
         {
 
             var httpResponse = _httpClient.GetAsync($"geocode/json?address={zipCode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU").GetAwaiter().GetResult();
