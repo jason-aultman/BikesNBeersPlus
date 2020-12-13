@@ -8,6 +8,7 @@ namespace BikesNBeersMVC.Models
     public class Trip
     {
         public int Id { get; set; }
+        public string TripName { get; set; }
         public int TripMiles { get; set; }
         public DateTime TripDate { get; set; }
         public int TripRating { get; set; }
