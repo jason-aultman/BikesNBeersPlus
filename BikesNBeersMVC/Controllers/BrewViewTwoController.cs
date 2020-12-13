@@ -32,11 +32,16 @@ namespace BikesNBeersMVC.Controllers
       var viewModel = new ViewModel();
       viewModel.Breweries = breweryResults;
       return View(viewModel);
-    }
-    [Route("BrewDestGiven")]
+            // var ListofStop = ... fetch data from db or ...
+            //return View(ListofStop);
+            //list does not exist in model
+        }
+        [Route("BrewDestGiven")]
     public IActionResult BrewDestGiven(Welcome welcome)
     {
       var breweryResults = _brewHandler.GetBrewery(welcome.ZipCodeEnd);
+
+
       var viewModel = new ViewModel();
       viewModel.Breweries = breweryResults;
       return View("Index", viewModel);

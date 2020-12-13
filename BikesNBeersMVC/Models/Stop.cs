@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BikesNBeersMVC.Models
 {
-    public class Stop
+    public class Stop 
     {
         public int Id { get; set; }
         public bool IsHotel { get; set; }

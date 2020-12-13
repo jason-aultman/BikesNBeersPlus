@@ -33,28 +33,38 @@
           {
           <tr>
               <td>
-                  @Html.HiddenFor(x => Model.Breweries.Results[i].photoURL)
-                  @Model.Breweries.Results[i].Name
-                  @Html.HiddenFor(x => Model.Breweries.Results[i].Name)
+                  @Html.HiddenFor(x => stop.Photo)
+                  
+                  @Html.HiddenFor(x => stop.Name)
               </td>
             <td>
-              @Model.Breweries.Results[i].Rating
-              @Html.HiddenFor(x => Model.Breweries.Results[i].Rating)
+
+              @Html.HiddenFor(x => stop.Rating)
             </td>
             <td>
-              @Model.Breweries.Results[i].Vicinity
-              @Html.HiddenFor(x => Model.Breweries.Results[i].Vicinity)
+              
+              @Html.HiddenFor(x => stop.Address)
             </td>
             <td>
-                <img src="@Url.Content(Model.Breweries.Results[i].photoURL)" alt="@Model.Breweries.Results[i].Name" />
+                <img src="@Url.Content(stop.Photo)" alt="@stop.Name" />
                
             </td>
             <td>
-              @Html.DropDownListFor(x => Model.Breweries.Results[i].selected, new List<SelectListItem>
-              {
-                  new SelectListItem{ Text="Choice", Value = "0" },
-                  new SelectListItem{ Text="Selected", Value = "1" }
-               })
+                @Html.DropDownListFor(x => x, new SelectList(
+                 new List<Object>
+                 {
+                    new SelectListItem { Text = "Choice", Value = "0"},
+                    new SelectListItem { Text = "Selected", Value = "1"}
+                }))
+
+
+
+
+                @*@Html.DropDownListFor(x => Model.Breweries.Results[i].selected, new List<SelectListItem>
+                {
+                    new SelectListItem{ Text="Choice", Value = "0" },
+                    new SelectListItem{ Text="Selected", Value = "1" }
+                 })*@
             </td>
           </tr>
         }
