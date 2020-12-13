@@ -36,7 +36,6 @@ namespace BikesNBeersMVC
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddTransient<ICoordinateHandler, CoordinateHandler>();
-            services.AddTransient<IRouteHandler, RouteHandler>();
             services.AddTransient<IBrewHandler, BrewHandler>();
             services.AddTransient<IHotelHandler, HotelHandler>();
             services.AddControllersWithViews();

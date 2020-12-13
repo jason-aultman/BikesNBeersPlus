@@ -27,8 +27,6 @@ namespace BikesNBeersMVC.Controllers
           //  var coordinate = new CoordinateHandler();
             var hotelResponse = new HotelHandler(_coordinateHandler);
             var breweryResponse = new BrewHandler(_coordinateHandler);
-            var viewModel = new ViewModel();
-            var routeService = new RouteHandler();
             var Coordinate1 = new Coordinate();
             var Coordinate2 = new Coordinate();
             Coordinate1.results = new BikesNBeersMVC.Models.Result[1];
@@ -49,17 +47,15 @@ namespace BikesNBeersMVC.Controllers
             Coordinate1.results[0].geometry.location.lng = -83.47555F;
             Coordinate2.results[0].geometry.location.lat = 42.3684F;
             Coordinate2.results[0].geometry.location.lng = -83.3527F;
-            var testRoute = routeService.GetRoute(Coordinate1, Coordinate2);
+          
             var testCoordinate = await _coordinateHandler.GetCoordinates("90210");
             var testHotelResponse = await hotelResponse.GetHotel("90210");
             var testHotelResponseResult = testHotelResponse;
             var testbreweryResponse = await breweryResponse.GetBrewery("90210");
             var testbreweryResponseResult = testbreweryResponse;
-            viewModel.Breweries = testbreweryResponseResult;
-            viewModel.HotelResponses = testHotelResponseResult;
-            viewModel.Routes = testRoute.routes;
 
-            return View(viewModel);
+            //broke this
+            return View();
         }
 
         public IActionResult Privacy()

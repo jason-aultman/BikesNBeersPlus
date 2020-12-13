@@ -9,6 +9,7 @@ using BikesNBeersMVC.Context;
 using BikesNBeersMVC.Models;
 using BikesNBeersMVC.Services;
 using BikesNBeersMVC.Services.Interfaces;
+using System.Security.Claims;
 
 namespace BikesNBeersMVC.Controllers
 {
@@ -27,18 +28,24 @@ namespace BikesNBeersMVC.Controllers
         }
 
         // GET: Stop search
-        public IActionResult Index()
+        public IActionResult Index(int tripId)
         {
-            return View();
+            return View(new StopSearchViewModel() { TripId = tripId } );
         }
 
-        [HttpPost]
-        public async Task<IActionResult> SearchForBarOrHotel(SearchRequestViewModel requestViewModel)
+
+        public async Task<IActionResult> SearchForBarOrHotel(StopSearchViewModel requestViewModel)
         {
+            var maxMiles = 50;
+            if(requestViewModel.MaxMiles != 0)
+            {
+                maxMiles = requestViewModel.MaxMiles;
+            }
             List<Stop> stops = new List<Stop>();
+
             if(string.Equals(requestViewModel.StopType, "brewery", StringComparison.InvariantCultureIgnoreCase))
             {
-                var breweryResponse = await _brewHandler.GetBrewery(requestViewModel.Query);
+                var breweryResponse = await _brewHandler.GetBreweryByAddress(requestViewModel.AddressStart, maxMiles);
                 foreach (var brewery in breweryResponse.Results)
                 {
                     stops.Add(new Stop
@@ -50,13 +57,14 @@ namespace BikesNBeersMVC.Controllers
                         Photo = brewery.photoURL,
                         IsHotel = false,
                         lat = brewery.Geometry.Location.Lat,
-                        lng = brewery.Geometry.Location.Lng
+                        lng = brewery.Geometry.Location.Lng,
+                        TripId = requestViewModel.TripId
                     });
                 }
             }
             else if (string.Equals(requestViewModel.StopType, "hotel", StringComparison.InvariantCultureIgnoreCase))
             {
-                var hotelResponse = await _hotelHandler.GetHotel(requestViewModel.Query);
+                var hotelResponse = await _hotelHandler.GetHotel(requestViewModel.AddressStart);
                 foreach (var hotel in hotelResponse.results)
                 {
                     stops.Add(new Stop
@@ -68,12 +76,38 @@ namespace BikesNBeersMVC.Controllers
                         Photo = hotel.photoURL,
                         IsHotel = true,
                         lat = hotel.geometry.location.lat,
-                        lng = hotel.geometry.location.lng
+                        lng = hotel.geometry.location.lng,
+                        TripId = requestViewModel.TripId
                     });
                 }
             }
 
-            return RedirectToAction("Index", "BrewViewTwo", stops);
+            return View("StopSelection", stops);
+        }
+
+        public IActionResult StopSelection(List<Stop> stops)
+        {
+            return View(stops);
+        }
+
+        public async Task<IActionResult> SelectedStop(Stop stop)
+        {
+            //if(selectedBrewView.tripid == nnull || 0)
+            //check if we need to create a new trip or not..is the user adding to an existing
+            //guard against tripid being 0
+            var trip = await _context.Trips
+                .Include(t => t.Stops)
+                .FirstOrDefaultAsync(t => t.Id == stop.TripId);
+
+            //some check indexing logic for stop number
+            //trip.stops.legnth or .count ++ or +1
+            //stop.number = the above line
+
+            trip.Stops.Add(stop);
+           
+            _context.Add(stop);
+            await _context.SaveChangesAsync();
+            return View(trip);
         }
 
         // GET: Stops/Details/5

@@ -16,8 +16,9 @@ namespace BikesNBeersMVC.Models
         public string Photo { get; set; }
         public double lat { get; set; }
         public double lng { get; set; }
-
         public int StopOrderNumber { get; set; }
+
+        public int TripId { get; set; }
     }
 
 

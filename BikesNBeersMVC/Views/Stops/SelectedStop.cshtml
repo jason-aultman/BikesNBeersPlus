@@ -1,12 +1,10 @@
 ﻿@model Trip
 
 @{
-    ViewData["Title"] = "Selected Brew View";
+    ViewData["Title"] = "Selected Stop";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@{
-}
 <h1>Trip Summary</h1>
 <h6>@Model.TripDate</h6>
 <h6>@Model.TripMiles </h6>
@@ -50,7 +48,7 @@
 
 
 <h6>Do you want to add another stop stop?</h6>
-<a asp-controller="Stops" asp-action="Index"> YES </a>
+<a asp-controller="Stops" asp-action="Index" asp-route-tripId="@Model.Id"> YES </a>
 @*if not go back to the home screen or the user profile screen or badge screen
     FIGURE THIS OUT EVENTUALLY *@
 <a asp-controller="TripSummary" asp-action="Index"> NO </a>

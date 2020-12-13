@@ -12,12 +12,10 @@ namespace BikesNBeersMVC.Controllers
     public class MapViewController : Controller
     {
         public readonly ICoordinateHandler _coordinateHandler;
-        public readonly IRouteHandler _routeHandler;
 
-        public MapViewController(ICoordinateHandler coordinateHandler, IRouteHandler routeHandler)
+        public MapViewController(ICoordinateHandler coordinateHandler)
         {
             _coordinateHandler = coordinateHandler;
-            _routeHandler = routeHandler;
         }
         public async Task<IActionResult> Index(Trip route)
         {
