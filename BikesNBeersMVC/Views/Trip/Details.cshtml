@@ -1,42 +1,53 @@
-@model BikesNBeersMVC.Models.Trip
+@model Trip
 
 @{
     ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Trip Summary</h1>
+<h6>@Model.TripDate</h6>
+<h6>@Model.TripMiles </h6>
+<h6>@Model.TripRating</h6>
 
-<div>
-    <h4>Trip</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TripMiles)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TripMiles)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TripDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TripDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TripRating)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TripRating)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BikerInfo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BikerInfo.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Stop Name
+            </th>
+            <th>
+                Stop Rating
+            </th>
+            <th>
+                Stop Address
+            </th>
+            <th>
+                Stop Image
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var stop in Model.Stops)
+        {
+            <tr>
+                <td>@stop.Name</td>
+                <td>@stop.Rating</td>
+                <td>@stop.Address</td>
+                <td>
+                    <img src="@Url.Content(stop.Photo)" alt="@stop.Name" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="MapView" asp-action="Index">Go To Map</a>
+
+
+
+<h6>Do you want to add another stop stop?</h6>
+<a asp-controller="Stops" asp-action="Index" asp-route-tripId="@Model.Id"> YES </a>
+
+<a asp-controller="UserView" asp-action="Index"> NO </a>

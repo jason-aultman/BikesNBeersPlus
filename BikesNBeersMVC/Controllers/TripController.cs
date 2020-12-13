@@ -91,6 +91,7 @@ namespace BikesNBeersMVC.Controllers
 
             var trip = await _context.Trips
                 .Include(t => t.BikerInfo)
+                .Include(t => t.Stops)                
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (trip == null)
             {

@@ -27,7 +27,7 @@ namespace BikesNBeersMVC.Controllers
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var bikerInfo = await _applicationDbContext.BikerInfos.Include(b => b.Trips).Include(b => b.Badges)
                 .FirstOrDefaultAsync(biker => biker.UserId == userId);
-            return View();
+            return View(bikerInfo);
         }
     }
 }

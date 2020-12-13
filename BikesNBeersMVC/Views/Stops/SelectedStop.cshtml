@@ -49,6 +49,5 @@
 
 <h6>Do you want to add another stop stop?</h6>
 <a asp-controller="Stops" asp-action="Index" asp-route-tripId="@Model.Id"> YES </a>
-@*if not go back to the home screen or the user profile screen or badge screen
-    FIGURE THIS OUT EVENTUALLY *@
-<a asp-controller="TripSummary" asp-action="Index"> NO </a>
+
+<a asp-controller="UserView" asp-action="Index"> NO </a>

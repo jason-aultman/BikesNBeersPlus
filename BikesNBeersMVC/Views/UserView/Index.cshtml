@@ -3,23 +3,99 @@
 *@
 @{
 }
-@model UserViewModel
+@model BikerInfo
 
 
 <h> Total Miles: @Model.TotalMiles</h>
+<h3>Trips</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Trip Date
+            </th>
+            <th>
+                Trip Miles
+            </th>
+            <th>
+                Trip Rating
+            </th>
 
-@foreach (var trip in @Model.Trips)
-{
-    @trip.TripDate
-    @trip.TripMiles
-    @trip.TripRating
-    <a asp-controller = "Trip" asp-action="Edit" asp-route-id="@trip.Id">Edit</a>
-}
-@foreach (var badge in @Model.Badges)
-{
-    @badge.Name
-    @badge.Desc
-}
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var trip in Model.Trips)
+            {
+                <tr>
+                    <td>
+
+                        <span>@trip.TripDate</span>
+
+                    </td>
+                    <td>
+
+
+                        <span>@trip.TripMiles</span>
+                    </td>
+                    <td>
+                        <span>@trip.TripRating</span>
+
+                    </td>
+
+                    <td>
+
+                        <a asp-controller="Trip" asp-action="Details" asp-route-id="@trip.Id">Edit</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Badges</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Badge Name
+            </th>
+            <th>
+                Badge Description
+            </th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var badge in Model.Badges)
+            {
+                <tr>
+                    <td>
+
+                        <span>@badge.Name</span>
+
+                    </td>
+                    <td>
+
+
+                        <span>@badge.Desc</span>
+                    </td>
+                   
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+
 <div>
-    <a asp-controller = "Welcome" asp-action="Index">Plan A Trip</a>
+    <a asp-controller="Welcome" asp-action="Index">Plan A Trip</a>
 </div>

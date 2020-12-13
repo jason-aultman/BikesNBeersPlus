@@ -92,16 +92,18 @@ namespace BikesNBeersMVC.Controllers
 
         public async Task<IActionResult> SelectedStop(Stop stop)
         {
-            //if(selectedBrewView.tripid == nnull || 0)
-            //check if we need to create a new trip or not..is the user adding to an existing
-            //guard against tripid being 0
+           
+            if (stop.TripId <= 0)
+            {
+                RedirectToAction("PlanATrip", "Trip");
+            }
+
             var trip = await _context.Trips
                 .Include(t => t.Stops)
                 .FirstOrDefaultAsync(t => t.Id == stop.TripId);
 
-            //some check indexing logic for stop number
-            //trip.stops.legnth or .count ++ or +1
-            //stop.number = the above line
+
+            stop.StopOrderNumber = trip.Stops.Count + 1;
 
             trip.Stops.Add(stop);
            
