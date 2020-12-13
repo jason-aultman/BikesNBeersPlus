@@ -19,7 +19,7 @@ namespace BikesNBeersMVC.Controllers
             _coordinateHandler = coordinateHandler;
             _routeHandler = routeHandler;
         }
-        public IActionResult Index(Trip route)
+        public async Task<IActionResult> Index(Trip route)
         {
             var testPlace1 = new Trip();
             var testPlace2 = new Trip();
@@ -34,8 +34,8 @@ namespace BikesNBeersMVC.Controllers
             var place1 = testPlace1.Stops[0].Address;
             var place2 = testPlace2.Stops[0].Address;
             var mapViewModel = new MapViewModel();
-            var start = _coordinateHandler.GetCoordinatesByAddress(place1);
-            var end = _coordinateHandler.GetCoordinatesByAddress(place2);
+            var start = await _coordinateHandler.GetCoordinatesByAddress(place1);
+            var end = await _coordinateHandler.GetCoordinatesByAddress(place2);
             mapViewModel.StartLat = start.results[0].geometry.location.lat;
             mapViewModel.StartLng = start.results[0].geometry.location.lng;
             mapViewModel.EndLat = end.results[0].geometry.location.lat;

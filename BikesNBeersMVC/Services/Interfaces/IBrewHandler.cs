@@ -7,8 +7,8 @@ namespace BikesNBeersMVC.Services
 {
     public interface IBrewHandler
     {
-        public BreweryResponse GetBrewery(string zipcode);
-        public BreweryResponse GetBrewery(string zipcode, double distance_in_miles);
-        public BreweryResponse GetBreweryByAddress(string address, double distanceInMiles);
+        Task<BreweryResponse> GetBrewery(string zipcode);
+        Task<BreweryResponse> GetBrewery(string zipcode, double distance_in_miles);
+        Task<BreweryResponse> GetBreweryByAddress(string address, double distanceInMiles);
     }
 }

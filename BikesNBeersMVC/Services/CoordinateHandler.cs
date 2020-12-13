@@ -26,13 +26,13 @@ namespace BikesNBeersMVC.Services
             };
 
         }
-        public Coordinate GetCoordinates(string zipCode)
+        public async Task<Coordinate> GetCoordinates(string zipCode)
         {
 
-            var httpResponse = _httpClient.GetAsync($"geocode/json?address={zipCode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU").GetAwaiter().GetResult();
+            var httpResponse = await _httpClient.GetAsync($"geocode/json?address={zipCode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU");
             if (httpResponse.IsSuccessStatusCode)
             {
-                var content = httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var content = await httpResponse.Content.ReadAsStringAsync();
                 var coordinate = JsonSerializer.Deserialize<Coordinate>(content, _options);
                 return coordinate;
             }
@@ -52,10 +52,10 @@ namespace BikesNBeersMVC.Services
 
         }
 
-        public Coordinate GetCoordinatesByAddress(string address)
+        public async Task<Coordinate> GetCoordinatesByAddress(string address)
         {
-            var refinedAddress=address.Replace(' ', '+');
-            var httpResponse = _httpClient.GetAsync($"geocode/json?address={refinedAddress}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU").GetAwaiter().GetResult();
+            var refinedAddress= address.Replace(' ', '+');
+            var httpResponse = await _httpClient.GetAsync($"geocode/json?address={refinedAddress}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU");
             if (httpResponse.IsSuccessStatusCode)
             {
                 var content = httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();

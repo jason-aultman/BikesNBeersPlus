@@ -23,7 +23,9 @@
         <th>
           Image
         </th>
-        <th></th>
+        <th>
+
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -34,15 +36,16 @@
           <tr>
               <td>
                   @Html.HiddenFor(x => stop.Photo)
-                  
+                  <span>@stop.Name</span>
                   @Html.HiddenFor(x => stop.Name)
               </td>
             <td>
 
               @Html.HiddenFor(x => stop.Rating)
+                <span>@stop.Rating</span>
             </td>
             <td>
-              
+              <span>@stop.Address</span>
               @Html.HiddenFor(x => stop.Address)
             </td>
             <td>
@@ -50,30 +53,12 @@
                
             </td>
             <td>
-                @Html.DropDownListFor(x => x, new SelectList(
-                 new List<Object>
-                 {
-                    new SelectListItem { Text = "Choice", Value = "0"},
-                    new SelectListItem { Text = "Selected", Value = "1"}
-                }))
-
-
-
-
-                @*@Html.DropDownListFor(x => Model.Breweries.Results[i].selected, new List<SelectListItem>
-                {
-                    new SelectListItem{ Text="Choice", Value = "0" },
-                    new SelectListItem{ Text="Selected", Value = "1" }
-                 })*@
+                @*<a asp-action="selectedBrewView" asp-route-stop="@stop">Select</a>*@
+                @Html.ActionLink("Select", "selectedBrewView", "BrewViewTwo", stop)
             </td>
           </tr>
         }
       }
     </tbody>
   </table>
-  <div class="row">
-    <div class="col-md-12 float-right">
-      <button type="submit" value="Save" style="float:right" class="btn btn-success">Select</button>
-    </div>
-  </div>
 </form>

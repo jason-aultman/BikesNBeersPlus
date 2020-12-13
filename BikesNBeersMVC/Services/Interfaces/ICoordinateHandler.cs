@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Threading.Tasks;
 using BikesNBeersMVC.Models;
 
 namespace BikesNBeersMVC.Services
 {
     public interface ICoordinateHandler
     {
-        public Coordinate GetCoordinates(string zipCode);
-        public Coordinate GetCoordinatesByAddress(string address);
+        Task<Coordinate> GetCoordinates(string zipCode);
+        Task<Coordinate> GetCoordinatesByAddress(string address);
     }
     
 }

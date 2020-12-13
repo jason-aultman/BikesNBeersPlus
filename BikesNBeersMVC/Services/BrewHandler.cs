@@ -29,34 +29,34 @@ namespace BikesNBeersMVC.Services
             _coordinateHandler = coord;
         }
 
-        public BreweryResponse GetBrewery(string zipcode)
+        public async Task<BreweryResponse> GetBrewery(string zipcode)
         {
-            var coordResults = _coordinateHandler.GetCoordinates(zipcode);
+            var coordResults = await _coordinateHandler.GetCoordinates(zipcode);
 
             BreweryResponse result = new BreweryResponse();
             if (coordResults != null && coordResults.results.Length > 0 && coordResults.results[0].geometry != null)
             {
-                var httpResponse = _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius=5000&keyword=brewery&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA").GetAwaiter().GetResult();
+                var httpResponse = await _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius=5000&keyword=brewery&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA");
                 httpResponse.EnsureSuccessStatusCode();
-                var content = httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var content = await httpResponse.Content.ReadAsStringAsync();
                 result = JsonSerializer.Deserialize<BreweryResponse>(content, _options);
             }
             return result;
         }
 
-        public BreweryResponse GetBrewery(string zipcode, double distance_in_miles)
+        public async Task<BreweryResponse> GetBrewery(string zipcode, double distance_in_miles)
         {
 
           
-            var coordResults = _coordinateHandler.GetCoordinates(zipcode);
+            var coordResults = await _coordinateHandler.GetCoordinates(zipcode);
             var distance_In_Meters = distance_in_miles * 1609.34;
 
             BreweryResponse result = new BreweryResponse();
             if (coordResults != null && coordResults.results.Length > 0 && coordResults.results[0].geometry != null)
             {
-                var httpResponse = _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius={distance_In_Meters}&keyword=brewery&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA").GetAwaiter().GetResult();
+                var httpResponse = await _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius={distance_In_Meters}&keyword=brewery&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA");
                 httpResponse.EnsureSuccessStatusCode();
-                var content = httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var content = await httpResponse.Content.ReadAsStringAsync();
                 result = JsonSerializer.Deserialize<BreweryResponse>(content, _options);
 
                 //getting photo api
@@ -73,19 +73,19 @@ namespace BikesNBeersMVC.Services
             return result;
         }
 
-        public BreweryResponse GetBreweryByAddress(string address, double distance_in_miles)
+        public async Task<BreweryResponse> GetBreweryByAddress(string address, double distance_in_miles)
         {
 
           
-            var coordResults = _coordinateHandler.GetCoordinatesByAddress(address);
+            var coordResults = await _coordinateHandler.GetCoordinatesByAddress(address);
             var distance_In_Meters = distance_in_miles * 1609.34;
 
             BreweryResponse result = new BreweryResponse();
             if (coordResults != null && coordResults.results.Length > 0 && coordResults.results[0].geometry != null)
             {
-                var httpResponse = _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius={distance_In_Meters}&keyword=brewery&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA").GetAwaiter().GetResult();
+                var httpResponse = await _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius={distance_In_Meters}&keyword=brewery&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA");
                 httpResponse.EnsureSuccessStatusCode();
-                var content = httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var content = await httpResponse.Content.ReadAsStringAsync();
                 result = JsonSerializer.Deserialize<BreweryResponse>(content, _options);
 
                 //getting photo api

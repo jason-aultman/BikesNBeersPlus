@@ -8,9 +8,9 @@
 @{
 }
 <h1>Trip Summary</h1>
-<h6>Model.TripDate</h6>
-<h6>Model.TripMiles </h6>
-<h6>Model.TripRating</h6>
+<h6>@Model.TripDate</h6>
+<h6>@Model.TripMiles </h6>
+<h6>@Model.TripRating</h6>
 
 <table class="table table-striped">
     <thead>
@@ -44,12 +44,13 @@
         }
     </tbody>
 </table>
-}
+
 <a asp-controller="MapView" asp-action="Index">Go To Map</a>
 
 
 
 <h6>Do you want to add another stop stop?</h6>
 <a asp-controller="Stops" asp-action="Index"> YES </a>
-//if not go back to the home screen or the user profile screen or badge screen
+@*if not go back to the home screen or the user profile screen or badge screen
+    FIGURE THIS OUT EVENTUALLY *@
 <a asp-controller="TripSummary" asp-action="Index"> NO </a>

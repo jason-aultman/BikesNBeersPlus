@@ -8,6 +8,6 @@ namespace BikesNBeersMVC.Services.Interfaces
 {
     public interface IHotelHandler
     {
-        public HotelResponse GetHotel(string address);
+        Task<HotelResponse> GetHotel(string address);
     }
 }

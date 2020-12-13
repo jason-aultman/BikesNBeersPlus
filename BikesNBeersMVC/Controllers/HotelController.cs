@@ -30,11 +30,11 @@ namespace BikesNBeersMVC.Controllers
     }
 
     [HttpPost]
-    public IActionResult Hotel(HotelSearchModel model)
+    public async Task<IActionResult> Hotel(HotelSearchModel model)
     {
       //creating the instance of the handler
       var hotelResponse = new HotelHandler(_coordinateHandler);
-      var result = hotelResponse.GetHotel(model.Address);
+      var result = await hotelResponse.GetHotel(model.Address);
 
       return View(result.results);
     }
@@ -45,7 +45,7 @@ namespace BikesNBeersMVC.Controllers
     {
       var lstSelected = hotels.Where(x => x.selected == 1).ToList();
             var newStop = new Stop() { IsHotel = true, Name = lstSelected[0].name, Address = lstSelected[0].vicinity, Phone = " ", Photo = lstSelected[0].photoURL, StopOrderNumber = 1 };
-           var coord = _coordinateHandler.GetCoordinatesByAddress(lstSelected[0].vicinity);
+           var coord = await _coordinateHandler.GetCoordinatesByAddress(lstSelected[0].vicinity);
             newStop.lat = coord.results[0].geometry.location.lat;
             newStop.lng = coord.results[0].geometry.location.lng;
 

@@ -22,7 +22,7 @@ namespace BikesNBeersMVC.Controllers
             _coordinateHandler = coordinate;
         }
        // [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
           //  var coordinate = new CoordinateHandler();
             var hotelResponse = new HotelHandler(_coordinateHandler);
@@ -50,10 +50,10 @@ namespace BikesNBeersMVC.Controllers
             Coordinate2.results[0].geometry.location.lat = 42.3684F;
             Coordinate2.results[0].geometry.location.lng = -83.3527F;
             var testRoute = routeService.GetRoute(Coordinate1, Coordinate2);
-            var testCoordinate = _coordinateHandler.GetCoordinates("90210");
-            var testHotelResponse = hotelResponse.GetHotel("90210");
+            var testCoordinate = await _coordinateHandler.GetCoordinates("90210");
+            var testHotelResponse = await hotelResponse.GetHotel("90210");
             var testHotelResponseResult = testHotelResponse;
-            var testbreweryResponse = breweryResponse.GetBrewery("90210");
+            var testbreweryResponse = await breweryResponse.GetBrewery("90210");
             var testbreweryResponseResult = testbreweryResponse;
             viewModel.Breweries = testbreweryResponseResult;
             viewModel.HotelResponses = testHotelResponseResult;

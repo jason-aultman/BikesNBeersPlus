@@ -23,7 +23,7 @@ namespace BikesNBeersMVC.Services
             _coordinateHandler = coord;
         }
 
-        public HotelResponse GetHotel(string zipcode)
+        public async Task<HotelResponse> GetHotel(string zipcode)
         {
             // call CoordinateHandler Service to do this
             //var httpResponseLatLong = _httpClient.GetAsync($"geocode/json?address={zipcode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU").GetAwaiter().GetResult();
@@ -31,14 +31,14 @@ namespace BikesNBeersMVC.Services
             //var contentLatLong = httpResponseLatLong.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             //var resultLatLong = JsonSerializer.Deserialize<Coordinate>(contentLatLong);
 
-            var coordResults = _coordinateHandler.GetCoordinates(zipcode);
+            var coordResults = await _coordinateHandler.GetCoordinates(zipcode);
 
             HotelResponse result = new HotelResponse();
             if (coordResults != null && coordResults.results.Length > 0 && coordResults.results[0].geometry != null)
             {
-                var httpResponse = _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius=5000&keyword=hotel&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA").GetAwaiter().GetResult();
+                var httpResponse = await _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius=5000&keyword=hotel&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA");
                 httpResponse.EnsureSuccessStatusCode();
-                var content = httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                var content = await httpResponse.Content.ReadAsStringAsync();
                 result = JsonSerializer.Deserialize<HotelResponse>(content);
 
                 //getting photo api

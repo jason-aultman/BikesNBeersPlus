@@ -38,7 +38,7 @@ namespace BikesNBeersMVC.Controllers
             List<Stop> stops = new List<Stop>();
             if(string.Equals(requestViewModel.StopType, "brewery", StringComparison.InvariantCultureIgnoreCase))
             {
-                var breweryResponse = _brewHandler.GetBrewery(requestViewModel.Query);
+                var breweryResponse = await _brewHandler.GetBrewery(requestViewModel.Query);
                 foreach (var brewery in breweryResponse.Results)
                 {
                     stops.Add(new Stop
@@ -49,16 +49,14 @@ namespace BikesNBeersMVC.Controllers
                         //Phone = brewery.Phone
                         Photo = brewery.photoURL,
                         IsHotel = false,
-                        //Lat = brewery.Geometry.Location.Lat
-                        //Long = brewery.Geometry.Location.lng
+                        lat = brewery.Geometry.Location.Lat,
+                        lng = brewery.Geometry.Location.Lng
                     });
                 }
-                //do api logic for bar search by address or zip
-                //genericviewmodel = apiresult
             }
             else if (string.Equals(requestViewModel.StopType, "hotel", StringComparison.InvariantCultureIgnoreCase))
             {
-                var hotelResponse = _hotelHandler.GetHotel(requestViewModel.Query);
+                var hotelResponse = await _hotelHandler.GetHotel(requestViewModel.Query);
                 foreach (var hotel in hotelResponse.results)
                 {
                     stops.Add(new Stop
@@ -69,16 +67,15 @@ namespace BikesNBeersMVC.Controllers
                         //Phone = brewery.Phone
                         Photo = hotel.photoURL,
                         IsHotel = true,
-                        //Lat = brewery.Geometry.Location.Lat
-                        //Long = brewery.Geometry.Location.lng
+                        lat = hotel.geometry.location.lat,
+                        lng = hotel.geometry.location.lng
                     });
                 }
             }
 
-            return View(stops);
+            return RedirectToAction("Index", "BrewViewTwo", stops);
         }
 
-        
         // GET: Stops/Details/5
         public async Task<IActionResult> Details(int? id)
         {

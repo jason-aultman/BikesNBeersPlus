@@ -18,14 +18,14 @@
                 <label class="control-label">Search Address or Zip</label>
                 <input name="query" type="text" class="form-control" />
                 @*@Html.TextBoxFor(x => x.Address)*@
-            </div>
-                @*@Html.DropDownListFor("StopType", new SelectList[]
-           { new SelectListItem() { Text = "Brewery", Value = "Brewery" },
-               new SelectListItem(){Text =  "Hotel", Value = "Hotel" },
-               "Type of Stop", new { @class = "form-control" });*@
-            <div class="form-group">
-                <input type="submit" value="rquestViewModel" class="btn btn-primary" />
-            </div>
+            </div>@Html.DropDownListFor(x => x.StopType, new List<SelectListItem> {
+              new SelectListItem { Text = "Brewery", Value = "Brewery"},
+              new SelectListItem { Text = "Hotel", Value = "Hotel"}
+         })
+
+        <div class="form-group">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
         </form>
     </div>
 </div>
