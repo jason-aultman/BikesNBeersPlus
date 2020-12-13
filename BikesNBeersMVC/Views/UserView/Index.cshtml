@@ -1,0 +1,25 @@
+﻿@*
+    Display Users Summary info:  # trips, total #miles logged, badges based on miles logged
+*@
+@{
+}
+@model UserViewModel
+
+
+<h> Total Miles: @Model.TotalMiles</h>
+
+@foreach (var trip in @Model.Trips)
+{
+    @trip.TripDate
+    @trip.TripMiles
+    @trip.TripRating
+    <a asp-controller = "Trip" asp-action="Edit" asp-route-id="@trip.Id">Edit</a>
+}
+@foreach (var badge in @Model.Badges)
+{
+    @badge.Name
+    @badge.Desc
+}
+<div>
+    <a asp-controller = "Welcome" asp-action="Index">Plan A Trip</a>
+</div>

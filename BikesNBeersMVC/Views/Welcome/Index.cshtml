@@ -9,7 +9,10 @@
         <label id="StartZip">Starting Zip</label>
         <input asp-for="@Model.ZipCodeStart" id="StartZip" type="text" inputmode="numeric" />
     </div>*@
-    
+    <div class="form-group">
+        <label id="TripDate">Date of Trip</label>
+        <input asp-for="@Model.TripDate" id="TripDate" type="date" inputmode="verbatim" />
+    </div>
     <div class="form-group">
         <label id="StartAddress">Starting Address</label>
         <input asp-for="@Model.AddressStart" id="StartAddress" type="text" inputmode="verbatim" />

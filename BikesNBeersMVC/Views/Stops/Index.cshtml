@@ -1,77 +1,32 @@
-﻿@model IEnumerable<BikesNBeersMVC.Models.Stop>
+﻿@model SearchRequestViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Stop search</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IsHotel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Photo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.lat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.lng)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StopOrderNumber)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsHotel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Photo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lng)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StopOrderNumber)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+@*
+    allow user to search for another bar or a hotel
+        search by zip or addressa drop down that says bar or htel
+*@
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SearchForBarOrHotel">
+            <div class="form-group">
+                <label class="control-label">Search Address or Zip</label>
+                <input name="query" type="text" class="form-control" />
+                @*@Html.TextBoxFor(x => x.Address)*@
+            </div>
+                @*@Html.DropDownListFor("StopType", new SelectList[]
+           { new SelectListItem() { Text = "Brewery", Value = "Brewery" },
+               new SelectListItem(){Text =  "Hotel", Value = "Hotel" },
+               "Type of Stop", new { @class = "form-control" });*@
+            <div class="form-group">
+                <input type="submit" value="rquestViewModel" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BikesNBeersMVC.Context;
 using BikesNBeersMVC.Models;
 using BikesNBeersMVC.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,13 @@ namespace BikesNBeersMVC.Controllers
   public class HotelController : Controller
   {
     private readonly ICoordinateHandler _coordinateHandler;
-    public HotelController(ICoordinateHandler coordinate)
+    private readonly ApplicationDbContext _applicationDbContext;
+
+    public HotelController(ICoordinateHandler coordinate, ApplicationDbContext applicationDbContext)
     {
       _coordinateHandler = coordinate;
+      _applicationDbContext = applicationDbContext;
+
     }
     public IActionResult Hotel()
     {
@@ -36,9 +41,16 @@ namespace BikesNBeersMVC.Controllers
 
     [HttpPost]
     [Route("selectHotels")]
-    public IActionResult selectHotels(List<HotelResult> hotels)
+    public async Task<IActionResult> selectHotels(List<HotelResult> hotels)
     {
       var lstSelected = hotels.Where(x => x.selected == 1).ToList();
+            var newStop = new Stop() { IsHotel = true, Name = lstSelected[0].name, Address = lstSelected[0].vicinity, Phone = " ", Photo = lstSelected[0].photoURL, StopOrderNumber = 1 };
+           var coord = _coordinateHandler.GetCoordinatesByAddress(lstSelected[0].vicinity);
+            newStop.lat = coord.results[0].geometry.location.lat;
+            newStop.lng = coord.results[0].geometry.location.lng;
+
+            _applicationDbContext.Add<Stop>(newStop);
+           await _applicationDbContext.SaveChangesAsync();
       return View(lstSelected);
     }
 

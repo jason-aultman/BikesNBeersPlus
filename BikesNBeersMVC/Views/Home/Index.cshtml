@@ -5,12 +5,23 @@
 
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">Welcome to Bikes N Beers</h1>
+    <p>
+    Plan your biking trip complete with local brewery choices along the way or at your destination!<br />
+    You will get a route with turn by turn directions and a hotel option. <br />
+    Enjoy the ride and a cold local brew when you arrive!<br />
+    Let's get started... please login to begin your adventure</p>
     <h3>
         @Html.ActionLink(
-       "Click here to enter",
+       "Plan A Trip",
        "Index",
        "Welcome")
+    </h3>
+    <h3>
+        @Html.ActionLink(
+       "Trip History",
+       "Index",
+       "UserSummary")
     </h3>
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwVcebeF-lqjYhet6u9rKjdU__3M66l0Q5gw&usqp=CAU"></img>
     @*<h1>

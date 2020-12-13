@@ -22,8 +22,8 @@ namespace BikesNBeersMVC.Controllers
         // GET: Trip
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Trips.Include(t => t.BikerInfo);
-            return View(await applicationDbContext.ToListAsync());
+            var trips = await _context.Trips.Include(t => t.BikerInfo).ToListAsync();
+            return View(trips);
         }
 
         // GET: Trip/Details/5

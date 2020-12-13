@@ -1,42 +1,55 @@
-﻿
+﻿@model Trip
+
 @{
-  ViewData["Title"] = "Selected Brew View";
-  Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Selected Brew View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model List<BikesNBeersMVC.Result>
-
-<h3>Selected Brew View</h3>
+@{
+}
+<h1>Trip Summary</h1>
+<h6>Model.TripDate</h6>
+<h6>Model.TripMiles </h6>
+<h6>Model.TripRating</h6>
 
 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        Rating
-      </th>
-      <th>
-        Address
-      </th>
-      <th>
-        Image
-      </th>
-    </tr>
-  </thead>
-  <tbody>
+    <thead>
+        <tr>
+            <th>
+                Stop Name
+            </th>
+            <th>
+                Stop Rating
+            </th>
+            <th>
+                Stop Address
+            </th>
+            <th>
+                Stop Image
+            </th>
+        </tr>
+    </thead>
+    <tbody>
 
-    @foreach (var item in Model)
-    {
-      <tr>
-        <td>@item.Name</td>
-        <td>@item.Rating</td>
-        <td>@item.Vicinity</td>
-        <td>
-          <img src="@Url.Content(item.photoURL)" alt="@item.Name" />
-        </td>
-      </tr>
-    }
-  </tbody>
+        @foreach (var stop in Model.Stops)
+        {
+            <tr>
+                <td>@stop.Name</td>
+                <td>@stop.Rating</td>
+                <td>@stop.Address</td>
+                <td>
+                    <img src="@Url.Content(stop.Photo)" alt="@stop.Name" />
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+}
+<a asp-controller="MapView" asp-action="Index">Go To Map</a>
+
+
+
+<h6>Do you want to add another stop stop?</h6>
+<a asp-controller="Stops" asp-action="Index"> YES </a>
+//if not go back to the home screen or the user profile screen or badge screen
+<a asp-controller="TripSummary" asp-action="Index"> NO </a>

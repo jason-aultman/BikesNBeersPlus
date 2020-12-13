@@ -27,6 +27,7 @@ namespace BikesNBeersMVC.Context
             {
                 b.HasKey(k => k.Id);
             });
+            
             builder.Entity<Stop>(b =>
             {
                 b.HasKey(k => k.Id);

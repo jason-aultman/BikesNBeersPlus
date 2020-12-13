@@ -4,7 +4,7 @@
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model ViewModel
+@model List<Stop>
 
 <h3>Breweries and ratings available within max# miles of your starting location</h3>
 <form action="/BrewViewTwo/selectedBrewView" method="post" id="form">
@@ -27,10 +27,10 @@
       </tr>
     </thead>
     <tbody>
-      @if (Model.Breweries.Results != null)
+      @if (Model != null)
       {
-        for (var i = 0; i < Model.Breweries.Results.Count(); i++)
-        {
+          foreach (var stop in Model)
+          {
           <tr>
               <td>
                   @Html.HiddenFor(x => Model.Breweries.Results[i].photoURL)
