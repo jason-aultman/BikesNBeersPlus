@@ -14,6 +14,10 @@ namespace BikesNBeersMVC.Models
         public string Address { get; set; }
         public string Phone { get; set; }
         public string Photo { get; set; }
+
+        //starting lat and starting long are based on the user search not based on the last stop lat or long
+        public double StartingLatitiude { get; set; }
+        public double StartingLongitude { get; set; }
         public double lat { get; set; }
         public double lng { get; set; }
         public int StopOrderNumber { get; set; }

@@ -41,6 +41,9 @@ namespace BikesNBeersMVC.Services
                 var content = await httpResponse.Content.ReadAsStringAsync();
                 result = JsonSerializer.Deserialize<HotelResponse>(content);
 
+                result.StartingLatitude = coordResults.results[0].geometry.location.lat;
+                result.StartingLongitude = coordResults.results[0].geometry.location.lng;
+
                 //getting photo api
                 if (result != null && result.results != null)
                 {

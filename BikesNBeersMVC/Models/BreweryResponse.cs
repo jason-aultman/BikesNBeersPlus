@@ -9,6 +9,8 @@ namespace BikesNBeersMVC
     public List<object> HtmlAttributions { get; set; }
     public List<Result> Results { get; set; }
     public string Status { get; set; }
+    public double StartingLatitude { get; set; }
+    public double StartingLongitude { get; set; }
   }
 
   public partial class Result

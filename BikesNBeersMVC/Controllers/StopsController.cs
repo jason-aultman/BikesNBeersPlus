@@ -41,6 +41,7 @@ namespace BikesNBeersMVC.Controllers
             {
                 maxMiles = requestViewModel.MaxMiles;
             }
+
             List<Stop> stops = new List<Stop>();
 
             if(string.Equals(requestViewModel.StopType, "brewery", StringComparison.InvariantCultureIgnoreCase))
@@ -56,6 +57,9 @@ namespace BikesNBeersMVC.Controllers
                         //Phone = brewery.Phone
                         Photo = brewery.photoURL,
                         IsHotel = false,
+                        //starting lat and starting long are based on the user search not based on the last stop lat or long
+                        StartingLatitiude = breweryResponse.StartingLatitude,
+                        StartingLongitude = breweryResponse.StartingLongitude,
                         lat = brewery.Geometry.Location.Lat,
                         lng = brewery.Geometry.Location.Lng,
                         TripId = requestViewModel.TripId
@@ -75,6 +79,9 @@ namespace BikesNBeersMVC.Controllers
                         //Phone = brewery.Phone
                         Photo = hotel.photoURL,
                         IsHotel = true,
+                        //starting lat and starting long are based on the user search not based on the last stop lat or long
+                        StartingLatitiude = hotelResponse.StartingLatitude,
+                        StartingLongitude = hotelResponse.StartingLongitude,
                         lat = hotel.geometry.location.lat,
                         lng = hotel.geometry.location.lng,
                         TripId = requestViewModel.TripId
@@ -104,12 +111,62 @@ namespace BikesNBeersMVC.Controllers
 
 
             stop.StopOrderNumber = trip.Stops.Count + 1;
+            if(trip.Stops.Count > 0)
+            {
+                var previousStop = trip.Stops[stop.StopOrderNumber - 1];
+                //if a user gets this far now our starting points are set correctly
+                stop.StartingLatitiude = previousStop.StartingLatitiude;
+                stop.StartingLongitude = previousStop.StartingLongitude;
+            }
 
             trip.Stops.Add(stop);
-           
+
+            //before adding a stop to the db we need to (re)calculate the total milages for the trip
+            //take the trip.startlat and trip.startlong against the first stop (use stop order)
+            //calculate each remaining distance between stops after doing it from the trip start to first stop
+            //if we delete a stop later we would do this logic
+
+
+
+            trip.TripMiles = CalculateTripMiles(trip.Stops);
+
             _context.Add(stop);
             await _context.SaveChangesAsync();
             return View(trip);
+        }
+
+        private int CalculateTripMiles(List<Stop> stops)
+        {
+            int totalMilage = 0;
+            foreach (var stop in stops.OrderBy(_ => _.StopOrderNumber))
+            {
+                double startingLong;
+                double startingLat;
+                if(stop.StopOrderNumber == 1)
+                {
+                    var initialLocation = stops.FirstOrDefault(_ => _.StopOrderNumber == 1);
+                   
+                }
+                else
+                {
+                    startingLong = stop.StartingLongitude;
+                    startingLat = stop.StartingLatitiude;
+                }
+
+            //var stopMilage = _backendService.CalculateStopMiles(startingLong, startingLat, endingLong, endingLat);
+            // totalMilage += stopMilage;
+/*
+            http://maps.googleapis.com/maps/api/distancematrix/outputFormat?parameters
+            origins = 41.43206,-81.38992 | -33.86748,151.20699
+
+                var httpResponse = await _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius={distance_In_Meters}&keyword=brewery&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA");
+                httpResponse.EnsureSuccessStatusCode();
+                var content = await httpResponse.Content.ReadAsStringAsync();
+                result = JsonSerializer.Deserialize<BreweryResponse>(content, _options); */
+            }
+
+            return 5000;
+            //return totalMilage;
         }
 
         // GET: Stops/Details/5

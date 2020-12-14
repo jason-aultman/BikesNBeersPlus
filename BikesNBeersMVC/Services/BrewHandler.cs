@@ -34,12 +34,16 @@ namespace BikesNBeersMVC.Services
             var coordResults = await _coordinateHandler.GetCoordinates(zipcode);
 
             BreweryResponse result = new BreweryResponse();
+
             if (coordResults != null && coordResults.results.Length > 0 && coordResults.results[0].geometry != null)
             {
                 var httpResponse = await _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius=5000&keyword=brewery&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA");
                 httpResponse.EnsureSuccessStatusCode();
                 var content = await httpResponse.Content.ReadAsStringAsync();
                 result = JsonSerializer.Deserialize<BreweryResponse>(content, _options);
+
+                result.StartingLatitude = coordResults.results[0].geometry.location.lat;
+                result.StartingLongitude = coordResults.results[0].geometry.location.lng;
             }
             return result;
         }
@@ -87,6 +91,9 @@ namespace BikesNBeersMVC.Services
                 httpResponse.EnsureSuccessStatusCode();
                 var content = await httpResponse.Content.ReadAsStringAsync();
                 result = JsonSerializer.Deserialize<BreweryResponse>(content, _options);
+
+                result.StartingLatitude = coordResults.results[0].geometry.location.lat;
+                result.StartingLongitude = coordResults.results[0].geometry.location.lng;
 
                 //getting photo api
                 if (result != null && result.Results != null)

@@ -8,6 +8,8 @@ namespace BikesNBeersMVC.Models
         public object[] html_attributions { get; set; }
         public HotelResult[] results { get; set; }
         public string status { get; set; }
+        public double StartingLatitude { get; set; }
+        public double StartingLongitude { get; set; }
     }
 
     public class HotelSearchModel {

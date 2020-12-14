@@ -43,6 +43,8 @@ namespace BikesNBeersMVC.Controllers
             //check if we need to create a new trip or not..is the user adding to an existing
             var trip = new Trip()
             {
+                TripName = welcome.TripName,
+                TripDate = welcome.TripDate,
                 BikerInfoId = bikerInfo.Id
             };
 
