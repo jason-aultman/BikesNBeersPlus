@@ -8,23 +8,21 @@ using Microsoft.EntityFrameworkCore;
 using BikesNBeersMVC.Context;
 using BikesNBeersMVC.Models;
 using BikesNBeersMVC.Services;
-using BikesNBeersMVC.Services.Interfaces;
 using System.Security.Claims;
+using BikesNBeersMVC.Services.Interfaces;
 
 namespace BikesNBeersMVC.Controllers
 {
     public class TripController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IBrewHandler _brewHandler;
-        private readonly IHotelHandler _hotelHandler;
+        private readonly IStopHandler _stopHandler;
 
         public TripController(ApplicationDbContext context, 
-            IBrewHandler brewHandler, IHotelHandler hotelHandler)
+            IStopHandler stopHandler)
         {
             _context = context;
-            _brewHandler = brewHandler;
-            _hotelHandler = hotelHandler;
+            _stopHandler = stopHandler;
         }
 
         // GET: Trip
@@ -39,8 +37,7 @@ namespace BikesNBeersMVC.Controllers
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var bikerInfo = await _context.BikerInfos
                 .FirstOrDefaultAsync(biker => biker.UserId == userId);
-            //if(selectedBrewView.tripid == nnull || 0)
-            //check if we need to create a new trip or not..is the user adding to an existing
+
             var trip = new Trip()
             {
                 TripName = welcome.TripName,
@@ -62,22 +59,18 @@ namespace BikesNBeersMVC.Controllers
         public async Task<IActionResult> PlanATripWithEndDestination(StopSearchViewModel welcome)
         {
             var stops = new List<Stop>();
-            var breweryResults = await _brewHandler.GetBrewery(welcome.ZipCodeEnd);
+            //List<Stop> stops = null;
+            //if (string.Equals(requestViewModel.StopType, "brewery", StringComparison.InvariantCultureIgnoreCase))
+            //{
+            //    stops = await _stopHandler.GetStopByAddress(requestViewModel.AddressStart, maxMiles, "brewery");
+            //    stops.Select(stop => stop.TripId = requestViewModel.TripId).ToList();
+            //}
+            //else if (string.Equals(requestViewModel.StopType, "hotel", StringComparison.InvariantCultureIgnoreCase))
+            //{
+            //    stops = await _stopHandler.GetStopByAddress(requestViewModel.AddressStart, maxMiles, "hotel");
+            //    stops.Select(stop => stop.TripId = requestViewModel.TripId).ToList();
+            //}
 
-            foreach (var brewery in breweryResults.Results)
-            {
-                stops.Add(new Stop()
-                {
-                    Name = brewery.Name,
-                    Rating = brewery.Rating,
-                    Address = brewery.Vicinity,
-                    //Phone = brewery.Phone
-                    Photo = brewery.photoURL,
-                    IsHotel = false,
-                    lat = brewery.Geometry.Location.Lat,
-                    lng = brewery.Geometry.Location.Lng
-                });
-            }
 
             return View(stops);
         }

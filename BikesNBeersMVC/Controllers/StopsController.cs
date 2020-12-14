@@ -8,23 +8,22 @@ using Microsoft.EntityFrameworkCore;
 using BikesNBeersMVC.Context;
 using BikesNBeersMVC.Models;
 using BikesNBeersMVC.Services;
-using BikesNBeersMVC.Services.Interfaces;
 using System.Security.Claims;
+using BikesNBeersMVC.Services.Interfaces;
 
 namespace BikesNBeersMVC.Controllers
 {
     public class StopsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private readonly IBrewHandler _brewHandler;
-        private readonly IHotelHandler _hotelHandler;
+        private readonly IStopHandler _stopHandler;
 
         public StopsController(ApplicationDbContext context,
-            IBrewHandler brewHandler, IHotelHandler hotelHandler)
+            IStopHandler stopHandler)
         {
             _context = context;
-            _brewHandler = brewHandler;
-            _hotelHandler = hotelHandler;
+            _stopHandler = stopHandler;
+
         }
 
         // GET: Stop search
@@ -36,57 +35,16 @@ namespace BikesNBeersMVC.Controllers
 
         public async Task<IActionResult> SearchForBarOrHotel(StopSearchViewModel requestViewModel)
         {
-            var maxMiles = 50;
-            if(requestViewModel.MaxMiles != 0)
-            {
-                maxMiles = requestViewModel.MaxMiles;
-            }
-
-            List<Stop> stops = new List<Stop>();
-
+            List<Stop> stops = null;
             if(string.Equals(requestViewModel.StopType, "brewery", StringComparison.InvariantCultureIgnoreCase))
             {
-                var breweryResponse = await _brewHandler.GetBreweryByAddress(requestViewModel.AddressStart, maxMiles);
-                foreach (var brewery in breweryResponse.Results)
-                {
-                    stops.Add(new Stop
-                    {
-                        Name = brewery.Name,
-                        Rating = brewery.Rating,
-                        Address = brewery.Vicinity,
-                        //Phone = brewery.Phone
-                        Photo = brewery.photoURL,
-                        IsHotel = false,
-                        //starting lat and starting long are based on the user search not based on the last stop lat or long
-                        StartingLatitiude = breweryResponse.StartingLatitude,
-                        StartingLongitude = breweryResponse.StartingLongitude,
-                        lat = brewery.Geometry.Location.Lat,
-                        lng = brewery.Geometry.Location.Lng,
-                        TripId = requestViewModel.TripId
-                    });
-                }
+                stops = await _stopHandler.GetStopByAddress(requestViewModel.AddressStart, requestViewModel.MaxMiles, "brewery");
+                stops.Select(stop => stop.TripId = requestViewModel.TripId).ToList();
             }
             else if (string.Equals(requestViewModel.StopType, "hotel", StringComparison.InvariantCultureIgnoreCase))
             {
-                var hotelResponse = await _hotelHandler.GetHotel(requestViewModel.AddressStart);
-                foreach (var hotel in hotelResponse.results)
-                {
-                    stops.Add(new Stop
-                    {
-                        Name = hotel.name,
-                        Rating = hotel.rating,
-                        Address = hotel.vicinity,
-                        //Phone = brewery.Phone
-                        Photo = hotel.photoURL,
-                        IsHotel = true,
-                        //starting lat and starting long are based on the user search not based on the last stop lat or long
-                        StartingLatitiude = hotelResponse.StartingLatitude,
-                        StartingLongitude = hotelResponse.StartingLongitude,
-                        lat = hotel.geometry.location.lat,
-                        lng = hotel.geometry.location.lng,
-                        TripId = requestViewModel.TripId
-                    });
-                }
+                stops = await _stopHandler.GetStopByAddress(requestViewModel.AddressStart, requestViewModel.MaxMiles, "hotel");
+                stops.Select(stop => stop.TripId = requestViewModel.TripId).ToList();
             }
 
             return View("StopSelection", stops);
@@ -111,10 +69,11 @@ namespace BikesNBeersMVC.Controllers
 
 
             stop.StopOrderNumber = trip.Stops.Count + 1;
-            if(trip.Stops.Count > 0)
+            //the 1st stop always has the starting point and we dont need to reassign to previous stop
+            if(trip.Stops.Count > 1)
             {
                 var previousStop = trip.Stops[stop.StopOrderNumber - 1];
-                //if a user gets this far now our starting points are set correctly
+              //if a user gets this far now our starting points are set correctly
                 stop.StartingLatitiude = previousStop.StartingLatitiude;
                 stop.StartingLongitude = previousStop.StartingLongitude;
             }
@@ -125,19 +84,16 @@ namespace BikesNBeersMVC.Controllers
             //take the trip.startlat and trip.startlong against the first stop (use stop order)
             //calculate each remaining distance between stops after doing it from the trip start to first stop
             //if we delete a stop later we would do this logic
-
-
-
-            trip.TripMiles = CalculateTripMiles(trip.Stops);
+            trip.TripMiles = await CalculateTripMiles(trip.Stops);
 
             _context.Add(stop);
             await _context.SaveChangesAsync();
             return View(trip);
         }
 
-        private int CalculateTripMiles(List<Stop> stops)
+        private async Task<double> CalculateTripMiles(List<Stop> stops)
         {
-            int totalMilage = 0;
+            double totalMilage = 0d;
             foreach (var stop in stops.OrderBy(_ => _.StopOrderNumber))
             {
                 double startingLong;
@@ -145,28 +101,21 @@ namespace BikesNBeersMVC.Controllers
                 if(stop.StopOrderNumber == 1)
                 {
                     var initialLocation = stops.FirstOrDefault(_ => _.StopOrderNumber == 1);
-                   
+                    startingLong = initialLocation.StartingLongitude;
+                    startingLat = initialLocation.StartingLatitiude;
                 }
                 else
                 {
                     startingLong = stop.StartingLongitude;
                     startingLat = stop.StartingLatitiude;
                 }
-
-            //var stopMilage = _backendService.CalculateStopMiles(startingLong, startingLat, endingLong, endingLat);
-            // totalMilage += stopMilage;
-/*
-            http://maps.googleapis.com/maps/api/distancematrix/outputFormat?parameters
-            origins = 41.43206,-81.38992 | -33.86748,151.20699
-
-                var httpResponse = await _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius={distance_In_Meters}&keyword=brewery&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA");
-                httpResponse.EnsureSuccessStatusCode();
-                var content = await httpResponse.Content.ReadAsStringAsync();
-                result = JsonSerializer.Deserialize<BreweryResponse>(content, _options); */
+                var stopMilage = await _stopHandler.GetDistance(startingLong, startingLat, stop.lng, stop.lat);
+                totalMilage += stopMilage;
             }
 
-            return 5000;
-            //return totalMilage;
+            //this may cause loss of precision
+            //remove after db update of trip.totalmilage to double
+            return totalMilage;
         }
 
         // GET: Stops/Details/5

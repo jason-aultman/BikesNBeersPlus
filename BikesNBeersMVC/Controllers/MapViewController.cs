@@ -11,11 +11,11 @@ namespace BikesNBeersMVC.Controllers
 {
     public class MapViewController : Controller
     {
-        public readonly ICoordinateHandler _coordinateHandler;
+        public readonly IStopHandler _stopHandler;
 
-        public MapViewController(ICoordinateHandler coordinateHandler)
+        public MapViewController(IStopHandler stopHandler)
         {
-            _coordinateHandler = coordinateHandler;
+            _stopHandler = stopHandler;
         }
         public async Task<IActionResult> Index(Trip route)
         {
@@ -32,8 +32,8 @@ namespace BikesNBeersMVC.Controllers
             var place1 = testPlace1.Stops[0].Address;
             var place2 = testPlace2.Stops[0].Address;
             var mapViewModel = new MapViewModel();
-            var start = await _coordinateHandler.GetCoordinatesByAddress(place1);
-            var end = await _coordinateHandler.GetCoordinatesByAddress(place2);
+            var start = await _stopHandler.GetCoordinatesByAddress(place1);
+            var end = await _stopHandler.GetCoordinatesByAddress(place2);
             mapViewModel.StartLat = start.results[0].geometry.location.lat;
             mapViewModel.StartLng = start.results[0].geometry.location.lng;
             mapViewModel.EndLat = end.results[0].geometry.location.lat;

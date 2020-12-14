@@ -8,13 +8,12 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BikesNBeersMVC.Services;
-using BikesNBeersMVC.Services.Interfaces;
 using BikesNBeersMVC.Context;
+using BikesNBeersMVC.Services.Interfaces;
 
 namespace BikesNBeersMVC
 {
@@ -35,9 +34,7 @@ namespace BikesNBeersMVC
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddTransient<ICoordinateHandler, CoordinateHandler>();
-            services.AddTransient<IBrewHandler, BrewHandler>();
-            services.AddTransient<IHotelHandler, HotelHandler>();
+            services.AddTransient<IStopHandler, StopHandler>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
