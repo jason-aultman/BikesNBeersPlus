@@ -14,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using BikesNBeersMVC.Services;
 using BikesNBeersMVC.Context;
 using BikesNBeersMVC.Services.Interfaces;
+using System.Text.Json;
 
 namespace BikesNBeersMVC
 {
@@ -32,9 +33,25 @@ namespace BikesNBeersMVC
             var connectionstring = Configuration["connectionstrings:bikesnbeersdb"];
             services.AddDbContext<ApplicationDbContext>(options =>options.UseSqlServer(connectionstring));
 
+            var apiKey = Configuration["apikey"];
+            var settings = new Settings(apiKey);
+            services.AddSingleton(settings);
+
+            var options = new JsonSerializerOptions()
+            {
+                AllowTrailingCommas = true,
+                PropertyNameCaseInsensitive = true,
+            };
+            services.AddSingleton(options);
+            services.AddHttpClient<IStopHandler, StopHandler>(client =>
+             {
+                 client.BaseAddress = new Uri("https://maps.googleapis.com/maps/api/");
+                 
+             });
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddTransient<IStopHandler, StopHandler>();
+            
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

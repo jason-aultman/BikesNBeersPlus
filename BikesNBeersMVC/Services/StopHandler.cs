@@ -11,25 +11,22 @@ namespace BikesNBeersMVC.Services
 {
     public class StopHandler : IStopHandler
     {
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
         private readonly JsonSerializerOptions _options;
-        public StopHandler()
+        private readonly Settings _settings;
+
+        public StopHandler(Settings settings, HttpClient httpClient, JsonSerializerOptions options)
         {
-            _httpClient = new HttpClient()
-            {
-                BaseAddress = new Uri("https://maps.googleapis.com/maps/api/")
-            };
-            _options = new JsonSerializerOptions()
-            {
-                AllowTrailingCommas = true,
-                PropertyNameCaseInsensitive = true,
-            };
+            _settings = settings;
+            _httpClient = httpClient;
+            _options = options;
+            
         }
 
         public async Task<Coordinate> GetCoordinates(string zipCode)
         {
 
-            var httpResponse = await _httpClient.GetAsync($"geocode/json?address={zipCode}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU");
+            var httpResponse = await _httpClient.GetAsync($"geocode/json?address={zipCode}&key={_settings.ApiKey}");
             if (httpResponse.IsSuccessStatusCode)
             {
                 var content = await httpResponse.Content.ReadAsStringAsync();
@@ -37,25 +34,13 @@ namespace BikesNBeersMVC.Services
                 return coordinate;
             }
             else return new Coordinate();
-
-
-            //var httpResponse = await client.GetAsync($"https://maps.googleapis.com/maps/api/geocode/json?address=67337&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU");
-            //// https://maps.googleapis.com/maps/api/geocode/json?address=zipcode&key=YOUR_API_KEY
-            //// replace zipcode with original code
-            //// replace YOUR_API_KEY with the api key from google
-            //httpResponse.EnsureSuccessStatusCode();
-            //var content = await httpResponse.Content.ReadAsStringAsync();
-            //var result = JsonConvert.DeserializeObject<Rootobject>(content);
-
-
-            //InvalidOperationException: The model item passed into the ViewDataDictionary is of type 'BikesNBeerVersion2.Services.Rootobject', but this ViewDataDictionary instance requires a model item of type 'BikesNBeerVersion2.Services.Result'.
-
+ 
         }
 
         public async Task<Coordinate> GetCoordinatesByAddress(string address)
         {
             var refinedAddress = address.Replace(' ', '+');
-            var httpResponse = await _httpClient.GetAsync($"geocode/json?address={refinedAddress}&key=AIzaSyDDQ1uMLrSYDQtlX-VIFyyiXMB5_dRJNqU");
+            var httpResponse = await _httpClient.GetAsync($"geocode/json?address={refinedAddress}&key={_settings.ApiKey}");
             if (httpResponse.IsSuccessStatusCode)
             {
                 var content = httpResponse.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -88,7 +73,7 @@ namespace BikesNBeersMVC.Services
             StopResponse result = new StopResponse();
             if (coordResults != null && coordResults.results.Length > 0 && coordResults.results[0].geometry != null)
             {
-                var httpResponse = await _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius={distance_In_Meters}&keyword={type}&key=AIzaSyAuKgJKHj3zOAMfx9bGAK8in1s4pYhl0JA");
+                var httpResponse = await _httpClient.GetAsync($"place/nearbysearch/json?location={coordResults.results[0].geometry.location.lat},{coordResults.results[0].geometry.location.lng}&radius={distance_In_Meters}&keyword={type}&key={_settings.ApiKey}");
                 httpResponse.EnsureSuccessStatusCode();
                 var content = await httpResponse.Content.ReadAsStringAsync();
                 result = JsonSerializer.Deserialize<StopResponse>(content, _options);
@@ -130,7 +115,7 @@ namespace BikesNBeersMVC.Services
 
         public async Task<double> GetDistance(double startingLong, double startingLat, double endingLong, double endingLat)
         {
-            var httpResponse = await _httpClient.GetAsync($"distancematix/json?origins={startingLat},{startingLong}&destinations={endingLat},{endingLong}&travel_mode=bicycling&units=imperial&key=AIzaSyCKzsJhKiiicui9B1qNQKHO85JdbHzizIo");
+            var httpResponse = await _httpClient.GetAsync($"distancematrix/json?origins={startingLat},{startingLong}&destinations={endingLat},{endingLong}&travel_mode=bicycling&units=imperial&key={_settings.ApiKey}");
             if (!httpResponse.IsSuccessStatusCode)
             {
                //do some error handling for unsucessful call
