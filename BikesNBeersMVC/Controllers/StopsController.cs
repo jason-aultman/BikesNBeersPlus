@@ -72,7 +72,7 @@ namespace BikesNBeersMVC.Controllers
             //the 1st stop always has the starting point and we dont need to reassign to previous stop
             if(trip.Stops.Count > 1)
             {
-                var previousStop = trip.Stops[stop.StopOrderNumber - 1];
+                var previousStop = trip.Stops[stop.StopOrderNumber - 2];
               //if a user gets this far now our starting points are set correctly
                 stop.StartingLatitiude = previousStop.StartingLatitiude;
                 stop.StartingLongitude = previousStop.StartingLongitude;
