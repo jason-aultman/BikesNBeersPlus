@@ -3,20 +3,32 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model MapViewModel
+@model List<Stop> 
 
 <h1>Map View</h1>
 
     @{
-        
-        var startlat = Model.StartLat;
-        var startlng = Model.StartLng;
-        var endlng = Model.EndLng;
-        var endlat = Model.EndLat;
+        var startLat = Model[0].lat;
+        var startLng = Model[0].lng;
+        var endLat = Model[Model.Count - 1].lat;
+        var endLng = Model[Model.Count - 1].lng;
+        var builder = "&";
+        if (Model.Count > 2)
+        {
+            foreach (var stop in Model)
+            {
+                builder += $"waypoint={stop.Address}&";
+            }
+        }
+
+        //var startlat = Model.sta
+        //var startlng = Model.StartLng;
+        //var endlng = Model.EndLng;
+        //var endlat = Model.EndLat;
 
         var key = "AIzaSyAIuye8uznaqinBLqSaFxdr6u58oHdTBsg";
         // var length = Model.Routes[0].legs.Length - 1;
-        var source = $"https://www.google.com/maps/embed/v1/directions?key={key}&mode=bicycling&avoid=highways&origin={startlat},{startlng}&destination={endlat},{endlng}&avoid=tolls|highways";
+        var source = $"https://www.google.com/maps/embed/v1/directions?key={key}&mode=bicycling&avoid=highways&origin={startLat},{startLng}{builder}destination={endLat},{endLng}&avoid=tolls|highways";
     }
     <iframe width="800"
             height="600"
