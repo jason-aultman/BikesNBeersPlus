@@ -40,7 +40,6 @@ namespace BikesNBeersMVC.Controllers
                 StopOrderNumber = 1,
                 StartingLatitiude = coords.results[0].geometry.location.lat,
                 StartingLongitude = coords.results[0].geometry.location.lng
-                
             };
             getTrip.Stops.Add(homeStop);
             _applicationDbContext.Add(getTrip);
