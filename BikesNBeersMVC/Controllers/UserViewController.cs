@@ -57,8 +57,9 @@ namespace BikesNBeersMVC.Controllers
             {
                 _applicationDbContext.Update(bikerInfo);
                 await _applicationDbContext.SaveChangesAsync();
+                
             }
-            return View("Home");
+            return View("Index");
         }
     }
 }

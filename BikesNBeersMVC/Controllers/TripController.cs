@@ -52,30 +52,29 @@ namespace BikesNBeersMVC.Controllers
 
             welcome.TripId = trip.Id;
 
-            //this will need to be wired to go to the stops controller for view
-            //this is so we don't have to duplicate the view
+           
             return RedirectToAction("SearchForBarOrHotel", "Stops", welcome);
         }
 
-        [Route("BrewDestGiven")]
-        public async Task<IActionResult> PlanATripWithEndDestination(StopSearchViewModel welcome)
-        {
-            var stops = new List<Stop>();
-            //List<Stop> stops = null;
-            //if (string.Equals(requestViewModel.StopType, "brewery", StringComparison.InvariantCultureIgnoreCase))
-            //{
-            //    stops = await _stopHandler.GetStopByAddress(requestViewModel.AddressStart, maxMiles, "brewery");
-            //    stops.Select(stop => stop.TripId = requestViewModel.TripId).ToList();
-            //}
-            //else if (string.Equals(requestViewModel.StopType, "hotel", StringComparison.InvariantCultureIgnoreCase))
-            //{
-            //    stops = await _stopHandler.GetStopByAddress(requestViewModel.AddressStart, maxMiles, "hotel");
-            //    stops.Select(stop => stop.TripId = requestViewModel.TripId).ToList();
-            //}
+        //[Route("BrewDestGiven")]
+        //public async Task<IActionResult> PlanATripWithEndDestination(StopSearchViewModel welcome)
+        //{
+        //    var stops = new List<Stop>();
+        //    //List<Stop> stops = null;
+        //    //if (string.Equals(requestViewModel.StopType, "brewery", StringComparison.InvariantCultureIgnoreCase))
+        //    //{
+        //    //    stops = await _stopHandler.GetStopByAddress(requestViewModel.AddressStart, maxMiles, "brewery");
+        //    //    stops.Select(stop => stop.TripId = requestViewModel.TripId).ToList();
+        //    //}
+        //    //else if (string.Equals(requestViewModel.StopType, "hotel", StringComparison.InvariantCultureIgnoreCase))
+        //    //{
+        //    //    stops = await _stopHandler.GetStopByAddress(requestViewModel.AddressStart, maxMiles, "hotel");
+        //    //    stops.Select(stop => stop.TripId = requestViewModel.TripId).ToList();
+        //    //}
 
 
-            return View(stops);
-        }
+        //    return View(stops);
+        //}
 
 
         // GET: Trip/Details/5
@@ -144,7 +143,7 @@ namespace BikesNBeersMVC.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TripMiles,TripDate,TripRating,BikerInfoId")] Trip trip)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TripMiles,TripDate,TripRating,TripName")] Trip trip)
         {
             if (id != trip.Id)
             {
@@ -155,7 +154,14 @@ namespace BikesNBeersMVC.Controllers
             {
                 try
                 {
-                    _context.Update(trip);
+                    var updateTrip = await _context.Trips.FindAsync(id);
+                    updateTrip.TripMiles = trip.TripMiles;
+                    updateTrip.TripName = trip.TripName;
+                    updateTrip.TripDate = trip.TripDate;
+                    updateTrip.TripRating = trip.TripRating;
+                    updateTrip.BikerInfo = trip.BikerInfo;
+
+                    _context.Update(updateTrip);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
