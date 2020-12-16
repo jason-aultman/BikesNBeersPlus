@@ -37,11 +37,13 @@ namespace BikesNBeersMVC.Controllers
             var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var bikerInfo = await _context.BikerInfos
                 .FirstOrDefaultAsync(biker => biker.UserId == userId);
-
+            var coordsStart = await _stopHandler.GetCoordinatesByAddress(welcome.AddressStart);
             var trip = new Trip()
             {
                 TripName = welcome.TripName,
                 TripDate = welcome.TripDate,
+                StartingLat = coordsStart.results[0].geometry.location.lat,
+                StartingLong = coordsStart.results[0].geometry.location.lng,
                 BikerInfoId = bikerInfo.Id
             };
 
