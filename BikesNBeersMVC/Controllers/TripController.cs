@@ -167,7 +167,8 @@ namespace BikesNBeersMVC.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                
+                return RedirectToAction("Index", "UserView");
             }
             ViewData["BikerInfoId"] = new SelectList(_context.BikerInfos, "Id", "Id", trip.BikerInfoId);
             return View(trip);
@@ -200,7 +201,7 @@ namespace BikesNBeersMVC.Controllers
             var trip = await _context.Trips.FindAsync(id);
             _context.Trips.Remove(trip);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "UserView");
         }
 
         private bool TripExists(int id)

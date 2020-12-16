@@ -1,0 +1,30 @@
+﻿body {
+    background-color: lightgray;
+/*    background-image: url(https://p0.pikist.com/photos/753/572/bike-forest-cycling-landscape-nature-park.jpg);*/
+/*    background-repeat: no-repeat;*/
+}
+
+a {
+    /*     border: 1px solid black; */
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 5px 5px; /* outline-color:black; */
+    color: #446942;
+    text-decoration: underline;
+}
+
+#h3wrapper {
+    width: 325px;
+    /* border: 1px solid black; */
+    margin: auto;
+}
+
+#h31 {
+    float: left;
+}
+
+#maplink {
+    margin-left: 85%;
+}
+.text-center1{
+    text-align:center
+}

@@ -3,65 +3,34 @@
 }
 
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Bikes N Beers</h1>
-    <p>
-    Plan your biking trip complete with local brewery choices along the way or at your destination!<br />
-    You will get a route with turn by turn directions and a hotel option. <br />
-    Enjoy the ride and a cold local brew when you arrive!<br />
-    Let's get started... please login to begin your adventure</p>
-    <h3>
-        @Html.ActionLink(
-       "Plan A Trip",
-       "Index",
-       "Welcome")
-    </h3>
-    <h3>
-        @Html.ActionLink(
-       "Trip History",
-       "Index",
-       "UserView")
-    </h3>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwVcebeF-lqjYhet6u9rKjdU__3M66l0Q5gw&usqp=CAU"></img>
-    @*<h1>
-        Hotels List
-    </h1>
-    <br />
-    @foreach (var response in Model.HotelResponses.results)
-    {
-        @response.name;
-        <br />
-        @response.rating;
-        <br />
-    }
-    <h1>
-        Breweries List
-    </h1>
-    <br />
-    @foreach (var response in Model.Breweries.Results)
-    {
-        @response.Name;
-        <br />
-
-        @response.Rating;
-        <br />
-    }
-    @{int a = 0;}
-<div>
-    @foreach (var leg in Model.Routes[0].legs)
-    {
-       <b>Starting Address: </b> @leg.start_address<br />
-
-        @foreach (var step in leg.steps)
-        {
-            <div>
-                @Html.Raw(step.html_instructions) in 
-                @Html.Raw(step.distance.text)
-            </div>
+    <div class="text-center">
+        <h1 class="display-4">Bikes N Beers</h1>
+        <p>
+            Plan your biking trip complete with local brewery and hotel choices along the way or at your destination!<br />
+            You will get a trip summary and mapped route to view. <br /><br />
+            Enjoy the ride and a cold local brew when you arrive!<br /><br />
             
-        }
-        <b>Destination: </b> @leg.end_address
-    }
+        </p>
 
-</div>*@
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwVcebeF-lqjYhet6u9rKjdU__3M66l0Q5gw&usqp=CAU"></img>
+        <br /><br />
+        <p>Let's get started... please login to begin your adventure </p>
+   <br />
+
+    <div id="h3wrapper">
+        <h3 id="h31">
+            @Html.ActionLink(
+           "Plan A Trip",
+           "Index",
+           "Welcome")
+        </h3>
+
+        <h3 id="h32">
+            @Html.ActionLink(
+           "Trip History",
+           "Index",
+           "UserView")
+        </h3>
+    </div>
+
 </div>

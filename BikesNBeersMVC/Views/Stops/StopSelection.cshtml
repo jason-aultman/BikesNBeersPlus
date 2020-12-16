@@ -6,59 +6,62 @@
 
 @model List<Stop>
 
-<h3>Stops available within max# miles of your starting location</h3>
-<form action="/BrewViewTwo/selectedBrewView" method="post" id="form">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Rating
-                </th>
-                <th>
-                    Address
-                </th>
-                <th>
-                    Image
-                </th>
-                <th>
-
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null)
-            {
-                foreach (var stop in Model)
-                {
+    <div class="text-center1">
+        <h3>Available Stops for your trip</h3>
+    </div>
+  
+        <form action="SelectedStop" method="post" id="form">
+            <table class="table table-striped">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.HiddenFor(x => stop.Photo)
-                            <span>@stop.Name</span>
-                            @Html.HiddenFor(x => stop.Name)
-                        </td>
-                        <td>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Rating
+                        </th>
+                        <th>
+                            Address
+                        </th>
+                        <th>
+                            Image
+                        </th>
+                        <th>
 
-                            @Html.HiddenFor(x => stop.Rating)
-                            <span>@stop.Rating</span>
-                        </td>
-                        <td>
-                            <span>@stop.Address</span>
-                            @Html.HiddenFor(x => stop.Address)
-                        </td>
-                        <td>
-                            <img src="@Url.Content(stop.Photo)" alt="@stop.Name" />
-
-                        </td>
-                        <td>
-                            @*<a asp-action="selectedBrewView" asp-route-stop="@stop">Select</a>*@
-                            @Html.ActionLink("Select", "SelectedStop", "Stops", stop)
-                        </td>
+                        </th>
                     </tr>
-                }
-            }
-        </tbody>
-    </table>
-</form>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var stop in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.HiddenFor(x => stop.Photo)
+                                    <span>@stop.Name</span>
+                                    @Html.HiddenFor(x => stop.Name)
+                                </td>
+                                <td>
+
+                                    @Html.HiddenFor(x => stop.Rating)
+                                    <span>@stop.Rating</span>
+                                </td>
+                                <td>
+                                    <span>@stop.Address</span>
+                                    @Html.HiddenFor(x => stop.Address)
+                                </td>
+                                <td>
+                                    <img src="@Url.Content(stop.Photo)" alt="@stop.Name" />
+
+                                </td>
+                                <td>
+                                    @*<a asp-action="selectedBrewView" asp-route-stop="@stop">Select</a>*@
+                                    @Html.ActionLink("Select", "SelectedStop", "Stops", stop)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </form>

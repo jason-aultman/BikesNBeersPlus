@@ -4,11 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Stop search</h1>
+<h1>Search for a Stop</h1>
 
 @*
     allow user to search for another bar or a hotel
-        search by zip or addressa drop down that says bar or htel
+        search by zip or addressa drop down that says bar or hotel
 *@
 
 <div class="row">
@@ -30,7 +30,7 @@
               new SelectListItem { Text = "Brewery", Value = "Brewery"},
               new SelectListItem { Text = "Hotel", Value = "Hotel"}
          })
-
+            <br/><br/>
             <div class="form-group">
                 <input type="submit" value="Search" class="btn btn-primary" />
             </div>

@@ -5,49 +5,55 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Trip Summary</h1>
-<h6>@Model.TripDate</h6>
-<h6>@Model.TripMiles </h6>
-<h6>@Model.TripRating</h6>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                Stop Name
-            </th>
-            <th>
-                Stop Rating
-            </th>
-            <th>
-                Stop Address
-            </th>
-            <th>
-                Stop Image
-            </th>
-        </tr>
-    </thead>
-    <tbody>
+    <h1>Plan My Trip</h1>
+<br/>
+<br/>
 
-        @foreach (var stop in Model.Stops)
-        {
+    
+    <h6>Trip Date: @Model.TripDate</h6>
+    <h6>Trip Miles: @Model.TripMiles </h6>
+    <h6>Trip Rating: @Model.TripRating</h6>
+
+    <table class="table table-striped">
+        <thead>
             <tr>
-                <td>@stop.Name</td>
-                <td>@stop.Rating</td>
-                <td>@stop.Address</td>
-                <td>
-                    <img src="@Url.Content(stop.Photo)" alt="@stop.Name" />
-                </td>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Rating
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Image
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
 
-<a asp-controller="MapView" asp-action="Index" asp-route-tripId="@Model.Id">Go To Map</a>
+            @foreach (var stop in Model.Stops)
+            {
+                <tr>
+                    <td>@stop.Name</td>
+                    <td>@stop.Rating</td>
+                    <td>@stop.Address</td>
+                    <td>
+                        <img src="@Url.Content(stop.Photo)" alt="@stop.Name" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
+    <div>
+        <h6>Do you want to add another stop?</h6>
+        <a asp-controller="Stops" asp-action="Index" asp-route-tripId="@Model.Id"> YES </a>
+        <a asp-controller="Trip" asp-action="Details"> NO </a>
+    </div>
+    <div class="text-right">
+        <a asp-controller="MapView" asp-action="Index" asp-route-tripId="@Model.Id">Go To Map</a>
+    </div>
 
-
-<h6>Do you want to add another stop?</h6>
-<a asp-controller="Stops" asp-action="Index" asp-route-tripId="@Model.Id"> YES </a>
-
-<a asp-controller="UserView" asp-action="Index"> NO </a>

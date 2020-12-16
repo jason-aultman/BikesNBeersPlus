@@ -24,6 +24,13 @@
     <Folder Include="Data\" />
     <Folder Include="Views\Welcome\" />
     <Folder Include="Views\UserView\" />
+    <Folder Include="CSS\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\css\style.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\css\style.css" />
+  </ItemGroup>
 </Project>

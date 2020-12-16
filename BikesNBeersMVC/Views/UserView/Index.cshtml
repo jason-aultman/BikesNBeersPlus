@@ -50,8 +50,9 @@
                     </td>
 
                     <td>
-
-                        <a asp-controller="Trip" asp-action="Details" asp-route-id="@trip.Id">Edit</a>
+                        <a asp-controller="Trip" asp-action="Delete" asp-route-id="@trip.Id">Delete</a>
+                        <a asp-controller="Trip" asp-action="Details" asp-route-id="@trip.Id">Add Stops</a>
+                        <a asp-controller="Trip" asp-action="Edit" asp-route-id="@trip.Id">Edit Trip Details</a>
                     </td>
                 </tr>
             }
@@ -95,8 +96,6 @@
         }
     </tbody>
 </table>
-
-
 
 <div>
     <a asp-controller="Welcome" asp-action="Index">Plan A Trip</a>
