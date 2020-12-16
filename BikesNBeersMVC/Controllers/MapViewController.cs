@@ -24,10 +24,12 @@ namespace BikesNBeersMVC.Controllers
         public IActionResult Index(int tripId)
         {
             var stopList = new List<Stop>();
+            var trips = _applicationDbContext.Trips.Where(_ => _.Id == tripId).ToList();
+            var thisTrip = trips[0];
             stopList = _applicationDbContext.Stops.Where(_ => _.TripId == tripId).ToList();
             
            
-            return View(stopList);
+            return View(thisTrip);
         }
     }
 }

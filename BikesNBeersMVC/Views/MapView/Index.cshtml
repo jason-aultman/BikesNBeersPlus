@@ -3,35 +3,55 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@model List<Stop> 
+@model Trip
 
 <h1>Map View</h1>
 
-    @{
-        var startLat = Model[0].lat;
-        var startLng = Model[0].lng;
-        var endLat = Model[Model.Count - 1].lat;
-        var endLng = Model[Model.Count - 1].lng;
-        var builder = "&";
-        if (Model.Count > 2)
+@{
+    var startLat = Model.StartingLat;
+    var startLng = Model.StartingLong;
+    var endLat = Model.Stops[Model.Stops.Count - 1].lat;
+    var endLng = Model.Stops[Model.Stops.Count - 1].lng;
+    var key = "AIzaSyAIuye8uznaqinBLqSaFxdr6u58oHdTBsg";
+    var source = $"https://www.google.com/maps/embed/v1/directions?key={key}&mode=bicycling&origin={startLat},{startLng}&destination={endLat},{endLng}";
+    if (Model.Stops.Count > 1)
+    {
+        <h1>Head towards your first stop: @Model.Stops[0].Name</h1>
+        endLat = Model.Stops[0].lat;
+        endLng = Model.Stops[0].lng;
+        source = $"https://www.google.com/maps/embed/v1/directions?key={key}&mode=bicycling&origin={startLat},{startLng}&destination={endLat},{endLng}";
+        <iframe width="800"
+                height="600"
+                frameborder="1" style="border:solid"
+                src=@source>
+        </iframe>
+        foreach (var stop in Model.Stops)
         {
-            foreach (var stop in Model)
+            if (!(stop == Model.Stops[0]))
             {
-                builder += $"waypoint={stop.Address}&";
+                <h1>then procede to your stop: @stop.Name</h1>
+                startLat = endLat;
+                startLng = endLng;
+                endLat = stop.lat;
+                endLng = stop.lng;
+                source = $"https://www.google.com/maps/embed/v1/directions?key={key}&mode=bicycling&origin={startLat},{startLng}&destination={endLat},{endLng}";
+                <iframe width="800"
+                        height="600"
+                        frameborder="1" style="border:solid"
+                        src=@source>
+                </iframe>
             }
         }
-
-        //var startlat = Model.sta
-        //var startlng = Model.StartLng;
-        //var endlng = Model.EndLng;
-        //var endlat = Model.EndLat;
-
-        var key = "AIzaSyAIuye8uznaqinBLqSaFxdr6u58oHdTBsg";
-        // var length = Model.Routes[0].legs.Length - 1;
-        var source = $"https://www.google.com/maps/embed/v1/directions?key={key}&mode=bicycling&avoid=highways&origin={startLat},{startLng}{builder}destination={endLat},{endLng}&avoid=tolls|highways";
     }
-    <iframe width="800"
-            height="600"
-            frameborder="0" style="border:2"
-            src=@source>
-    </iframe>
+    else
+    {
+        <h1>Procede to your destination: @Model.Stops[0].Name</h1>
+        <iframe width="800"
+                height="600"
+                frameborder="1" style="border:solid"
+                src=@source>
+        </iframe>
+
+    }
+}
+

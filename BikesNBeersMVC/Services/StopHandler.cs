@@ -99,7 +99,6 @@ namespace BikesNBeersMVC.Services
                     Name = stop.Name,
                     Rating = stop.Rating,
                     Address = stop.Vicinity,
-                    //Phone = brewery.Phone
                     Photo = stop.photoURL,
                     IsHotel = false,
                     //starting lat and starting long are based on the user search not based on the last stop lat or long
