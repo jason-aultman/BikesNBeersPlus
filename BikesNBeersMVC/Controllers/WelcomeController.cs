@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BikesNBeersMVC.Controllers
 {
-   // [Authorize]
+    [Authorize]
     public class WelcomeController : Controller
     {
         private ApplicationDbContext _applicationDbContext;
