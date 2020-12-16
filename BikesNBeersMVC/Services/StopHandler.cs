@@ -59,7 +59,7 @@ namespace BikesNBeersMVC.Services
             }
             else if (type == "hotel")
             {
-                maxMiles = 2d;
+                maxMiles = 3d;
             }
 
             if (distance_in_miles != 0)

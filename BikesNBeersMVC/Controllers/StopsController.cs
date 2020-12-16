@@ -94,6 +94,7 @@ namespace BikesNBeersMVC.Controllers
         private async Task<double> CalculateTripMiles(List<Stop> stops)
         {
             double totalMilage = 0d;
+            double totalTripInMiles = 0d;
             foreach (var stop in stops.OrderBy(_ => _.StopOrderNumber))
             {
                 double startingLong;
@@ -115,7 +116,8 @@ namespace BikesNBeersMVC.Controllers
 
             //this may cause loss of precision
             //remove after db update of trip.totalmilage to double
-            return totalMilage;
+            totalTripInMiles = totalMilage / 1609.344;
+            return totalTripInMiles;
         }
 
         // GET: Stops/Details/5

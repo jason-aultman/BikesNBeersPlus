@@ -5,12 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
     <h1>Plan My Trip</h1>
 <br/>
 <br/>
-
-    
     <h6>Trip Date: @Model.TripDate</h6>
     <h6>Trip Miles: @Model.TripMiles </h6>
     <h6>Trip Rating: @Model.TripRating</h6>
@@ -51,7 +48,7 @@
     <div>
         <h6>Do you want to add another stop?</h6>
         <a asp-controller="Stops" asp-action="Index" asp-route-tripId="@Model.Id"> YES </a>
-        <a asp-controller="Trip" asp-action="Details"> NO </a>
+        <a asp-controller="Trip" asp-action="Details" asp-route-tripId="@Model.Id"> NO </a>
     </div>
     <div class="text-right">
         <a asp-controller="MapView" asp-action="Index" asp-route-tripId="@Model.Id">Go To Map</a>

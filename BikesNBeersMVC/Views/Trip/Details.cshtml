@@ -1,7 +1,9 @@
 @model Trip
 
-@{ ViewData["Title"] = "Details";
-                Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <h1>Trip Summary</h1>
 <h6>Trip Date: @Model.TripDate</h6>
@@ -36,7 +38,8 @@
     <td>
         <img src="@Url.Content(stop.Photo)" alt="@stop.Name" />
     </td>
-</tr>}
+</tr>
+        }
     </tbody>
 </table>
 
