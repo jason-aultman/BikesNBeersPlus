@@ -111,12 +111,14 @@ namespace BikesNBeersMVC.Controllers
                     startingLat = stop.StartingLatitiude;
                 }
                 var stopMilage = await _stopHandler.GetDistance(startingLong, startingLat, stop.lng, stop.lat);
+                stopMilage = Math.Round(stopMilage, 2, MidpointRounding.AwayFromZero);
                 totalMilage += stopMilage;
             }
 
             //this may cause loss of precision
             //remove after db update of trip.totalmilage to double
             totalTripInMiles = totalMilage / 1609.344;
+            totalTripInMiles = Math.Round(totalTripInMiles, 2, MidpointRounding.AwayFromZero);
             return totalTripInMiles;
         }
 

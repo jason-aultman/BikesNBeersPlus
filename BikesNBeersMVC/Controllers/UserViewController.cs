@@ -51,7 +51,7 @@ namespace BikesNBeersMVC.Controllers
                 _applicationDbContext.Update(bikerInfo);
                 await _applicationDbContext.SaveChangesAsync();
                 //Make new View
-                return View("BadgeEarned");
+                return View("Index", bikerInfo);
             }
             else
             {
@@ -59,7 +59,7 @@ namespace BikesNBeersMVC.Controllers
                 await _applicationDbContext.SaveChangesAsync();
                 
             }
-            return View("Index");
+            return View("Index", bikerInfo);
         }
     }
 }

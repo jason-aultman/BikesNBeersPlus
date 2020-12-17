@@ -206,7 +206,12 @@ namespace BikesNBeersMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var bikerInfo = await _context.BikerInfos.Include(b => b.Trips).Include(b => b.Badges)
+                .FirstOrDefaultAsync(biker => biker.UserId == userId);
+            
             var trip = await _context.Trips.FindAsync(id);
+            bikerInfo.TotalMiles -= (int)trip.TripMiles;
             _context.Trips.Remove(trip);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "UserView");

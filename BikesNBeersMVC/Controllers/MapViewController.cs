@@ -20,7 +20,7 @@ namespace BikesNBeersMVC.Controllers
             _applicationDbContext = dbContext;
             _stopHandler = stopHandler;
         }
-      //  [Route ("Mapview/Index/{tripId:int}")]
+      //  [HttpPost]
         public IActionResult Index(int tripId)
         {
             var stopList = new List<Stop>();

@@ -52,6 +52,8 @@
                         <a asp-controller="Trip" asp-action="Delete" asp-route-id="@trip.Id">Delete</a>
                         <a asp-controller="Trip" asp-action="Details" asp-route-id="@trip.Id">Add Stops</a>
                         <a asp-controller="Trip" asp-action="Edit" asp-route-id="@trip.Id">Edit Trip Details</a>
+                        <a asp-controller="MapView" asp-action="Index" asp-route-tripId="@trip.Id">Map</a>
+                      
                     </td>
                 </tr>
             }
