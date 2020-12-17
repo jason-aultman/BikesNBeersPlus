@@ -28,9 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\css\style.css" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="wwwroot\css\style.css" />
+    <Content Update="wwwroot\css\site.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\style.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>
