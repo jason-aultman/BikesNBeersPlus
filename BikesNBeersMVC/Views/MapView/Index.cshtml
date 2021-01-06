@@ -12,7 +12,9 @@
     var startLng = Model.StartingLong;
     var endLat = Model.Stops[Model.Stops.Count - 1].lat;
     var endLng = Model.Stops[Model.Stops.Count - 1].lng;
-    var key = "AIzaSyAIuye8uznaqinBLqSaFxdr6u58oHdTBsg";
+    //var key = "AIzaSyAIuye8uznaqinBLqSaFxdr6u58oHdTBsg";
+    var key = ViewBag.Key;
+    
     var source = $"https://www.google.com/maps/embed/v1/directions?key={key}&mode=bicycling&origin={startLat},{startLng}&destination={endLat},{endLng}";
     if (Model.Stops.Count > 1)
     {

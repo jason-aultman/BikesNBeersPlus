@@ -211,7 +211,7 @@ namespace BikesNBeersMVC.Controllers
                 .FirstOrDefaultAsync(biker => biker.UserId == userId);
             
             var trip = await _context.Trips.FindAsync(id);
-            bikerInfo.TotalMiles -= (int)trip.TripMiles;
+           // bikerInfo.TotalMiles -= (int)trip.TripMiles;  remove 12/27 due to redundancy
             _context.Trips.Remove(trip);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "UserView");
